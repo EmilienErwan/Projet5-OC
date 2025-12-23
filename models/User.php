@@ -1,17 +1,17 @@
 <?php
 
-class User{
-    private int $id;
+class User extends AbstractEntity{
+    private int $id_user;
     private string $name;
     private string $pseudo;
     private string $password;
     private string $library;
 
     public function getId(): int{
-        return $this->id;
+        return $this->id_user;
     }
-    public function setId(int $id): void{
-        $this->id = $id;
+    public function setId(int $id_user): void{
+        $this->id_user = $id_user;
     }
     public function getName(): string{
         return $this->name;
