@@ -1,46 +1,46 @@
 <?php
 
-class Book{
-    private int $id;
+class Book extends AbstractEntity{
+    private int $id_book;
     private string $title;
     private string $description;
     private string $author;
     private string $image;
     private bool $status;
-    public function getId(){
-        return $this->id;
+    public function getId(): int{
+        return $this->id_book;
     }
-    public function setId($id){
-        $this->id = $id;
+    public function setId($id_book): void{
+        $this->id_book = $id_book;
     }
-    public function getTitle(){
+    public function getTitle(): string{
         return $this->title;
     }
-    public function setTitle($title){
+    public function setTitle($title): void{
         $this->title = $title;
     }
-    public function getDescription(){
+    public function getDescription(): string{
         return $this->description;
     }
-    public function setDescription($description){
+    public function setDescription($description): void{
         $this->description = $description;
     }
-    public function getImage(){
+    public function getImage(): string{
         return $this->image;
     }
-    public function setImage($image){
+    public function setImage($image): void{
         $this->image = $image;
     }
-    public function getAuthor(){
+    public function getAuthor(): string{
         return $this->author;
     }
-    public function setAuthor($author){
+    public function setAuthor($author): void{
         $this->author = $author;
     }
-    public function getStatus(){
+    public function getStatus(): bool{
         return $this->status;
     }
-    public function setStatus($status){
+    public function setStatus($status): void{
         $this->status = $status;
     }
 }
