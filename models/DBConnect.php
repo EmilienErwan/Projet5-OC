@@ -19,7 +19,7 @@ class DBConnect{
         }
         return $stmt;
     }
-     public static function getInstance() : DBConnect
+    public static function getInstance() : DBConnect
     {
         if (!self::$instance) {
             self::$instance = new DBConnect();

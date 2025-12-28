@@ -3,15 +3,29 @@
 class UserManager extends AbstractEntity{
     /**
      * Recupère l'utilisateur par le pseudo
-     * @param string $pseudo
+     * @param int $id
      * @return User|null
      */
-    public function getUser(string $pseudo): ?User {
-        $query = "SELECT * FROM user WHERE pseudo = ?";
-        $result = $this->pdo->query($query, [$pseudo]);
+    public function getUser(int $id): ?User {
+        $query = "SELECT * FROM user WHERE id = ?";
+        $result = $this->pdo->query($query, [$id]);
         $user = $result->fetch(PDO::FETCH_ASSOC);
         if ($user) {
             return new User($user);
+        }
+        return null;
+    }
+    /**
+     * Retourne une information sur l'utilisateur
+     * @param int $id
+     * @param string $table
+     */
+    public function getUserInfo(int $id, string $table): ?string{
+        $query = "SELECT $table FROM user WHERE id = ?";
+        $result = $this->pdo->query($query,[$id]);
+        $userInfo = $result->fetch(PDO::FETCH_ASSOC);
+        if($userInfo !== null){
+            return $userInfo;
         }
         return null;
     }

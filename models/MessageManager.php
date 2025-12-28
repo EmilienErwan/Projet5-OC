@@ -59,6 +59,27 @@ class MessageManager extends AbstractEntity{
         return $messages;
     }
     /**
+     * Retourne le dernier message reçu
+     * @param int $userId
+     * @return Message
+     */
+    public function getLastMessageReceive(int $userId) : ?Message{
+        $query = "SELECT * FROM messages WHERE id_user = ? ORDER BY date_send DESC LIMIT 1";
+        $result = $this->pdo->query($query,[$userId]);
+        return new Message($result->fetch(PDO::FETCH_ASSOC));
+    }
+    /**
+     * Retourne le dernier message reçu d'un utilisateur
+     * @param int $userId
+     * @param int $receiverId
+     * @return Message
+     */
+    public function getLastMessage(int $userId, int $receiverId) : ?Message{
+        $query = "SELECT * FROM messages WHERE id_user = ? AND id_receiver = ? ORDER BY date_send DESC LIMIT 1";
+        $result = $this->pdo->query($query,[$userId, $receiverId]);
+        return new Message($result->fetch(PDO::FETCH_ASSOC));
+    }
+    /**
      * Supprime un message par son id
      * @param int $id_message
      * @return void
@@ -83,7 +104,7 @@ class MessageManager extends AbstractEntity{
      * @return void
      */
     public function addMessage(Message $message): void{
-        $query = "INSERT INTO messages (id_user,id_receiver,content) VALUES (:id_user,:id_receiver,:content)";
+        $query = "INSERT INTO messages (id_user,id_receiver,content,date_send) VALUES (:id_user,:id_receiver,:content,NOW())";
         $this->pdo->query( $query, ["id_user" => $message->getId_user(),"id_receiver" => $message->getId_receiver(),"content" => $message->getContent()] );
     }
 }

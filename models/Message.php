@@ -5,6 +5,7 @@ class Message extends AbstractEntity{
     private int $id_user;
     private int $id_receiver;
     private string $content;
+    private DateTime $date_send;
     public function getId(): int{
         return $this->id_message;
     }
@@ -28,5 +29,11 @@ class Message extends AbstractEntity{
     }
     public function setContent(string $content): void{
         $this->content = $content;
+    }
+    public function getDate(): DateTime{
+        return $this->date_send;
+    }
+    public function setDate(string $date): void{
+        $this->date_send = new DateTime($date);
     }
 }
