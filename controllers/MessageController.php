@@ -17,8 +17,9 @@ class MessageController{
     {
         $this->checkIfUserIsConnected();
         $userManager = new UserManager();
-        $userId = $userManager->getId();
-
+        $user = $userManager->getUser($_POST['log']);
+        $userId = $user->getId();
+        
         $messageManager = new MessageManager();
         $receiverIds = $messageManager->getDistinctIdReceiver($userId);
         $contacts = [];
@@ -30,6 +31,5 @@ class MessageController{
 
         $view = new View("Messagerie");
         $view->render("messages",['contacts' => $contacts,'messages' => $messages,'id' => $lastMessageReceiverId]);
-
     }
 }

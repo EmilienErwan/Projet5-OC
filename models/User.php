@@ -6,7 +6,9 @@ class User extends AbstractEntity{
     private string $pseudo;
     private string $password;
     private string $library;
-
+    private DateTime $inscriptionDate;
+    private string $profilImage;
+    private string $email;
     public function getId(): int{
         return $this->id_user;
     }
@@ -36,5 +38,23 @@ class User extends AbstractEntity{
     }
     public function setLibrary(string $library): void{
         $this->library = $library;
+    }
+    public function getInscriptionDate(): DateTime{
+        return $this->inscriptionDate;
+    }
+    public function setInscriptionDate(DateTime $inscriptionDate): void{
+        $this->inscriptionDate = $inscriptionDate;
+    }
+    public function getProfilImage(): string{
+        return $this->profilImage;
+    }
+    public function setProfilImage(string $profilImage): void{
+        $this->profilImage = $profilImage;
+    }
+    public function getEmail(): string{
+        return $this->email;
+    }
+    public function setEmail(string $email): void{
+        $this->email = $email;
     }
 }
