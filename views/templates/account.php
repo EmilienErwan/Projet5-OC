@@ -12,11 +12,11 @@ $userManager = new UserManager();
     </article>
     <form action="" method="post" class="infoAccount">
         <p>Vos informations personnelles</p>
-        <p>Addresse email</p>
+        <label for="email">Addresse email</label>
         <input type="text" name="email" value="<?= $user->getEmail() ?>">
-        <p>Mot de passe</p>
-        <input type="password" name="password" value="**********">
-        <p>Pseudo</p>
+        <label for="password">Mot de passe</label>
+        <input type="password" name="password" value="<?= $user->getPassword() ?>">
+        <label for="pseudo">Pseudo</label>
         <input type="text" name="pseudo" value="<?= $user->getPseudo() ?>">
         <button class="submit">Enregistrer</button>
     </form>

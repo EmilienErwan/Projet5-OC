@@ -2,6 +2,20 @@
 
 class BookManager extends AbstractEntity{
     /**
+     * Récupère tous les livres diponibles
+     * @param string $status
+     * @return Book[]
+     */
+    public function getBooksByStatus(): array{
+        $books = [];
+        $query = "SELECT id FROM books WHERE status = ?";
+        $stmt = $this->pdo->query( $query, [true]);
+        while($book = $stmt->fetch(PDO::FETCH_ASSOC)){
+            $books[] = new Book($book);
+        }
+        return $books;
+    }
+    /**
      * Récupère un livre par son id
      * @param int $bookId
      * @return Book|null
@@ -30,8 +44,8 @@ class BookManager extends AbstractEntity{
      * @return void
      */
     public function updateBook(Book $book): void {
-        $query = "UPDATE books SET title = :title, author = :author, description = :description, status = :status ";
-        $this->pdo->query($query, ["title" => $book->getTitle(),"author" => $book->getAuthor(),"decription" => $book->getDescription(),"status" => $book->getStatus()]);
+        $query = "UPDATE books SET title = :title, author = :author, description = :description, status = :status, image = :image, id_user = :id_user ";
+        $this->pdo->query($query, ["title" => $book->getTitle(),"author" => $book->getAuthor(),"decription" => $book->getDescription(),"status" => $book->getStatus(),"image" => $book->getImage(),"id_user" => $book->getId_user()]);
     }
     /**
      * Ajoute un livre dans la bdd
@@ -39,7 +53,7 @@ class BookManager extends AbstractEntity{
      * @return void
      */
     public function addBook(Book $book): void{
-        $query = "INSERT INTO books (title,author,description,status) VALUES (:title,:author,:description,:status)";
-        $this->pdo->query( $query, ["title" => $book->getTitle(),"author" => $book->getAuthor(),"description" => $book->getDescription(),"status" => $book->getStatus()] );
+        $query = "INSERT INTO books (title,author,description,status,image,id_user) VALUES (:title,:author,:description,:status,:image,:id_user)";
+        $this->pdo->query( $query, ["title" => $book->getTitle(),"author" => $book->getAuthor(),"description" => $book->getDescription(),"status" => $book->getStatus(),"image" => $book->getImage(),"id_user" => $book->getId_user()] );
     }
 }

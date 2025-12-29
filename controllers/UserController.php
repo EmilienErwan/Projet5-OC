@@ -18,7 +18,7 @@ class UserController{
         $this->checkIfUserIsConnected();
         
         $userManager = new UserManager();
-        $user = $userManager->getUser($_POST['log']);
+        $user = $userManager->getUserByEmail($_POST['email']);
 
         $view = new View("Mon compte");
         $view->render("account",["user" => $user]);

@@ -17,14 +17,14 @@ class MessageController{
     {
         $this->checkIfUserIsConnected();
         $userManager = new UserManager();
-        $user = $userManager->getUser($_POST['log']);
+        $user = $userManager->getUserByEmail($_POST['email']);
         $userId = $user->getId();
-        
+
         $messageManager = new MessageManager();
         $receiverIds = $messageManager->getDistinctIdReceiver($userId);
         $contacts = [];
         foreach($receiverIds as $receiverId){
-            $contacts[] = ["pseudo" => $userManager->getUserInfo($receiverId,"pseudo"),"content" => $messageManager->getLastMessage($userId,$receiverId)];
+            $contacts[] = ["pseudo" => $userManager->getUserById($receiverId)->getPseudo(),"content" => $messageManager->getLastMessage($userId,$receiverId)];
         }
         $lastMessageReceiverId = $messageManager->getLastMessageReceive($userId)->getId_receiver();
         $messages = $messageManager->getMessagesBetweenTwoUsers($userId, $lastMessageReceiverId);
