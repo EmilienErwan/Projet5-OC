@@ -42,8 +42,12 @@ class User extends AbstractEntity{
     public function getInscriptionDate(): DateTime{
         return $this->inscriptionDate;
     }
-    public function setInscriptionDate(DateTime $inscriptionDate): void{
-        $this->inscriptionDate = $inscriptionDate;
+    public function setInscriptionDate($inscriptionDate): void{
+        if($inscriptionDate instanceof DateTime){
+            $this->inscriptionDate = $inscriptionDate;
+            return;
+        }
+        $this->inscriptionDate = new DateTime($inscriptionDate);
     }
     public function getProfilImage(): string{
         return $this->profilImage;

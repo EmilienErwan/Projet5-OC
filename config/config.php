@@ -9,7 +9,9 @@
 
     define('TEMPLATE_VIEW_PATH', './views/templates/'); // Le chemin vers les templates de vues.
     define('MAIN_VIEW_PATH', TEMPLATE_VIEW_PATH . 'main.php'); // Le chemin vers le template principal.
-    define('DEFAULT_IMAGE_PROFIL', TEMPLATE_VIEW_PATH . 'default_profil_image.png'); // Le chemin vers l'image par défaut du profil.
+    define('DEFAULT_IMAGE_PROFIL', "'./uploads/images/userImage/default_profil_image.png'"); // Le chemin vers l'image par défaut du profil.
+    define('DEFAULT_IMAGE_BOOK', "'./uploads/images/userImage/default_book_image.jpg'"); // Le chemin vers l'image par défaut du profil.
+    define('DEFAULT_NAME', 'Utilisateur Tom Troc'); // Le nom par défaut d'un utilisateur.
 
     define('DB_HOST', 'localhost');
     define('DB_NAME', 'tomTroc');

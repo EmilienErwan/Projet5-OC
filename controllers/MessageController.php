@@ -5,7 +5,7 @@ class MessageController{
     {
         // On vérifie que l'utilisateur est connecté.
         if (!isset($_SESSION['user'])) {
-            header("Location: index.php?action=connectionForm.php");
+            header("Location: index.php?action=showConnectionForm");
         }
         exit();
     }

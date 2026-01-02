@@ -7,7 +7,7 @@ class Book extends AbstractEntity{
     private string $author;
     private string $image;
     private bool $status;
-    private int $id_user;
+    private int $idUser;
     public function getId(): int{
         return $this->id_book;
     }
@@ -44,10 +44,10 @@ class Book extends AbstractEntity{
     public function setStatus($status): void{
         $this->status = $status;
     }
-    public function getId_user(): int{
-        return $this->id_user;
+    public function getIdUser(): int{
+        return $this->idUser;
     }
-    public function setId_user($id_user): void{
-        $this->id_user = $id_user;
+    public function setIdUser($idUser): void{
+        $this->idUser = $idUser;
     }
 }

@@ -7,13 +7,14 @@ class BookManager extends AbstractEntity{
      * @return Book[]
      */
     public function getBooksByStatus(): array{
-        $books = [];
-        $query = "SELECT id FROM books WHERE status = ?";
-        $stmt = $this->pdo->query( $query, [true]);
-        while($book = $stmt->fetch(PDO::FETCH_ASSOC)){
-            $books[] = new Book($book);
+        $bookObject = [];
+        $query = "SELECT * FROM books WHERE status = true";
+        $stmt = $this->pdo->query($query);
+        $books = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        foreach($books as $book){
+            $bookObject[] = new Book($book);
         }
-        return $books;
+        return $bookObject;
     }
     /**
      * Récupère un livre par son id
@@ -44,8 +45,8 @@ class BookManager extends AbstractEntity{
      * @return void
      */
     public function updateBook(Book $book): void {
-        $query = "UPDATE books SET title = :title, author = :author, description = :description, status = :status, image = :image, id_user = :id_user ";
-        $this->pdo->query($query, ["title" => $book->getTitle(),"author" => $book->getAuthor(),"decription" => $book->getDescription(),"status" => $book->getStatus(),"image" => $book->getImage(),"id_user" => $book->getId_user()]);
+        $query = "UPDATE books SET title = :title, author = :author, description = :description, status = :status, image = :image, idUser = :idUser ";
+        $this->pdo->query($query, ["title" => $book->getTitle(),"author" => $book->getAuthor(),"decription" => $book->getDescription(),"status" => $book->getStatus(),"image" => $book->getImage(),"idUser" => $book->getIdUser()]);
     }
     /**
      * Ajoute un livre dans la bdd
@@ -53,7 +54,7 @@ class BookManager extends AbstractEntity{
      * @return void
      */
     public function addBook(Book $book): void{
-        $query = "INSERT INTO books (title,author,description,status,image,id_user) VALUES (:title,:author,:description,:status,:image,:id_user)";
-        $this->pdo->query( $query, ["title" => $book->getTitle(),"author" => $book->getAuthor(),"description" => $book->getDescription(),"status" => $book->getStatus(),"image" => $book->getImage(),"id_user" => $book->getId_user()] );
+        $query = "INSERT INTO books (title,author,description,status,image,idUser) VALUES (:title,:author,:description,:status,:image,:idUser)";
+        $this->pdo->query( $query, ["title" => $book->getTitle(),"author" => $book->getAuthor(),"description" => $book->getDescription(),"status" => $book->getStatus(),"image" => $book->getImage(),"idUser" => $book->getIdUser()] );
     }
 }

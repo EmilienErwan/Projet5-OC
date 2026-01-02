@@ -9,7 +9,7 @@ class View{
         }
     }
     private function viewPathConstruct(string $title): string{
-        return TEMPLATE_VIEW_PATH. $title ."php";
+        return TEMPLATE_VIEW_PATH. $title . ".php";
     }
     private function renderViewTemplate(string $viewPath, array $params = []): string{
         if(file_exists($viewPath)){

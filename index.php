@@ -4,7 +4,63 @@ require_once("config/autoload.php");
 require_once("config/config.php");
 
 try {
+        switch ($_GET['action'] ?? 'home') {
 
+            case 'showAccount':
+                $controller = new UserController();
+                $controller->showAccount();
+                break;
+                
+            case 'showMessages':
+                $controller = new MessageController();
+                $controller->showMessages();
+                break;
+
+            case 'showConnectionForm':
+                $controller = new UserController();
+                $controller->showConnectionForm();
+                break;
+
+            case 'showExchangeBooks':
+                $controller = new BookController();
+                $controller->showExchangeBooks();
+                break;
+                
+            case 'showBook':
+                $controller = new BookController();
+                $controller->showBook();
+                break;
+
+            case 'connectUser':
+                $controller = new UserController();
+                $controller->connectUser();
+                break;
+
+            case 'showInscriptionForm':
+                $controller = new UserController();
+                $controller->showInscriptionForm();
+                break;
+
+            case 'registerUser':
+                $controller = new UserController();
+                $controller->registerUser();
+                break;
+
+            case 'updateUser':
+                $controller = new UserController();
+                $controller->updateUser();
+                break;
+
+            case 'disconnectUser':
+                $controller = new UserController();
+                $controller->disconnectUser();
+                break;
+
+            default:
+                $controller = new AdminController();
+                $controller->showHome();
+                break;
+        }
 } catch (Exception $e) {
     echo "erreur". $e->getMessage() ."erreur";
 }

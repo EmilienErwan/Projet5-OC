@@ -7,7 +7,7 @@ class UserManager extends AbstractEntity{
      * @return User|null
      */
     public function getUserByEmail(string $email): ?User {
-        $query = "SELECT * FROM user WHERE email = ?";
+        $query = "SELECT * FROM users WHERE email = ?";
         $result = $this->pdo->query($query, [$email]);
         $user = $result->fetch(PDO::FETCH_ASSOC);
         if ($user) {
@@ -21,7 +21,7 @@ class UserManager extends AbstractEntity{
      * @return User|null
      */
     public function getUserById(int $id): ?User {
-        $query = "SELECT * FROM user WHERE id = ?";
+        $query = "SELECT * FROM users WHERE id = ?";
         $result = $this->pdo->query($query, [$id]);
         $user = $result->fetch(PDO::FETCH_ASSOC);
         if ($user) {
@@ -35,8 +35,8 @@ class UserManager extends AbstractEntity{
      * @return void
      */
     public function updateUser(User $user): void {
-        $query = "UPDATE users SET name = :name, pseudo = :pseudo, password = :password, library = :library ";
-        $this->pdo->query($query, ["name" => $user->getName(),"pseudo" => $user->getPseudo(),"password" => $user->getPassword(),"library" => $user->getLibrary()]);
+        $query = "UPDATE users SET name = :name, pseudo = :pseudo, password = :password, library = :library, email = :email";
+        $this->pdo->query($query, ["name" => $user->getName(),"pseudo" => $user->getPseudo(),"password" => $user->getPassword(),"library" => $user->getLibrary(), "email" => $user->getEmail()]);
     }
     /**
      * Récupère et modifie la bibliothèque
@@ -59,7 +59,7 @@ class UserManager extends AbstractEntity{
         $result = $this->pdo->query($query, [$userId]);
         $library = $result->fetch(PDO::FETCH_ASSOC);
         $libraryArray = json_decode($library['library'], true);
-        return count($libraryArray);
+        return is_array($libraryArray) ? count($libraryArray) : 0;
     }
     /**
      * Retourne la bibliothèque d'un utilisateur
@@ -73,6 +73,9 @@ class UserManager extends AbstractEntity{
         $idBooks = json_decode($library['library'], true);
         $bookManager = new BookManager();
         $books = [];
+        if(!is_array($idBooks)){
+            return $books;
+        }
         foreach($idBooks as $idBook){
             $books[] = $bookManager->getBookById($idBook);
         }

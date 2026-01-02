@@ -1,19 +1,20 @@
 <?php
 $userManager = new UserManager();
+$user = $params['user'];
 ?>
 
 <div class="myAccount">
     <article class="description">
-        <p><?= $user->getProfilImage() ?></p>
+        <img src="<?= $user->getProfilImage() ?>" alt="<?= $user->getPseudo() ?>">
         <p><?= $user->getPseudo() ?></p>
         <p><?= "Inscrit il y a". $userManager->compareDate($user)["year"] ?></p>
         <p>BIBLIOTHEQUE</p>
         <p><?= $userManager->getNbBooks($user->getId())."livres" ?></p>
     </article>
-    <form action="" method="post" class="infoAccount">
+    <form action="index.php?action=updateUser" method="post" class="infoAccount">
         <p>Vos informations personnelles</p>
-        <label for="email">Addresse email</label>
-        <input type="text" name="email" value="<?= $user->getEmail() ?>">
+        <label for="log">Addresse email</label>
+        <input type="text" name="log" value="<?= $user->getEmail() ?>">
         <label for="password">Mot de passe</label>
         <input type="password" name="password" value="<?= $user->getPassword() ?>">
         <label for="pseudo">Pseudo</label>

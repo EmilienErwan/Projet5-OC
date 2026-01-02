@@ -1,5 +1,9 @@
 <?php
-
+if(isset($_SESSION['log'])) {
+    $connected = "disconnectUser";
+} else {
+    $connected = "showConnectionForm";
+}
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -12,11 +16,15 @@
     <body>
         <header>
             <nav>
-                <a href="index.php">Accueil</a>
-                <a href="exchangeBook.php">Nos livres à l'échange</a>
-                <a href="messages.php">Messagerie</a>
-                <a href="account.php">Mon compte</a>
-                <a href="connectionForm.php">Connexion</a>
+                <a href="index.php?action=home">Accueil</a>
+                <a href="index.php?action=showExchangeBooks">Nos livres à l'échange</a>
+                <a href="index.php?action=showMessages">Messagerie</a>
+                <a href="index.php?action=showAccount">Mon compte</a>
+                <?php if($connected === "disconnectUser"){ ?>
+                    <a href="index.php?action=disconnectUser">Déconnexion</a>
+                <?php } else { ?>
+                    <a href="index.php?action=showConnectionForm">Connexion</a>
+                <?php } ?>
             </nav>
         </header>
         <main>
