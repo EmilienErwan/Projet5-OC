@@ -31,15 +31,19 @@ $user = $params['user'];
             <div class="action">Action</div>
         </div>
         <?php $library = $userManager->getLibrary($user->getId());
-        foreach($library as $book){ ?>
-            <div class="bookInLibrary">
-                <div class="imageBook"><img src="<?= $book->getImage() ?>" alt=<?= $book->getTitle() ?>></div>
-                <div class="title"><?= $book->getTitle() ?></div>
-                <div class="author"><?= $book->getAuthor() ?></div>
-                <div class="description"><?= $book->getDescription() ?></div>
-                <div class="status"><?= $book->getStatus() ?></div>
-                <div class="action"><button class="editBook">Editer</button><button class="deleteBook">Supprimer</button></div>
-            </div>
-        <?php } ?>
+        if($library === null){
+            echo "<p>Votre bibliothèque est vide</p>";
+        }else{
+            foreach($library as $book){ ?>
+                <div class="bookInLibrary">
+                    <div class="imageBook"><img src="<?= $book->getImage() ?>" alt=<?= $book->getTitle() ?>></div>
+                    <div class="title"><?= $book->getTitle() ?></div>
+                    <div class="author"><?= $book->getAuthor() ?></div>
+                    <div class="description"><?= $book->getDescription() ?></div>
+                    <div class="status"><?= $book->getStatus() ?></div>
+                    <div class="action"><button class="editBook">Editer</button><button class="deleteBook">Supprimer</button></div>
+                </div>
+            <?php }
+        } ?>
     </article>
 </div>

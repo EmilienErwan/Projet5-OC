@@ -1,28 +1,28 @@
 <?php
 
 class Message extends AbstractEntity{
-    private int $id_message;
-    private int $id_user;
-    private int $id_receiver;
+    private int $idMessage;
+    private int $idUser;
+    private int $idReceiver;
     private string $content;
-    private DateTime $date_send;
+    private DateTime $dateSend;
     public function getId(): int{
-        return $this->id_message;
+        return $this->idMessage;
     }
-    public function setId(int $id_message): void{
-        $this->id_message = $id_message;
+    public function setId(int $idMessage): void{
+        $this->idMessage = $idMessage;
     }
-    public function getId_user(): int{
-        return $this->id_user;
+    public function getIdUser(): int{
+        return $this->idUser;
     }
-    public function setId_user(int $id_user): void{
-        $this->id_user = $id_user;
+    public function setIdUser(int $idUser): void{
+        $this->idUser = $idUser;
     }
-    public function getId_receiver(): int{
-        return $this->id_receiver;
+    public function getIdReceiver(): int{
+        return $this->idReceiver;
     }
-    public function setId_receiver(int $id_receiver): void{
-        $this->id_receiver = $id_receiver;
+    public function setIdReceiver(int $idReceiver): void{
+        $this->idReceiver = $idReceiver;
     }
     public function getContent(): string{
         return $this->content;
@@ -31,9 +31,9 @@ class Message extends AbstractEntity{
         $this->content = $content;
     }
     public function getDate(): DateTime{
-        return $this->date_send;
+        return $this->dateSend;
     }
     public function setDate(string $date): void{
-        $this->date_send = new DateTime($date);
+        $this->dateSend = new DateTime($date);
     }
 }

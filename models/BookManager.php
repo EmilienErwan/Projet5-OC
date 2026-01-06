@@ -31,6 +31,19 @@ class BookManager extends AbstractEntity{
         return null;
     }
     /**
+     * Récupère un livre aléatoire
+     * @return Book|null
+     */
+    public function randomBook(): ?Book {
+        $query = "SELECT * FROM books ORDER BY RAND() LIMIT 1";
+        $stmt = $this->pdo->query($query);
+        $book = $stmt->fetch(PDO::FETCH_ASSOC);
+        if($book){
+            return new Book($book);
+        }
+        return null;
+    }
+    /**
      * Supprime un livre par son id
      * @param int $id_book
      * @return void

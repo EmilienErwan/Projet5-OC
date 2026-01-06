@@ -6,10 +6,7 @@ class UserController{
         // On vérifie que l'utilisateur est connecté.
         if (!isset($_SESSION['log'])) {
             header("Location: index.php?action=showConnectionForm");
-        }else{
-            header("Location: index.php?action=showAccount");
         }
-        exit();
     }
     /**
      * Affiche la vue messages.php avec les contacts et derniers messages
@@ -17,6 +14,8 @@ class UserController{
      */
     public function showAccount():void
     {
+        $this->checkIfUserIsConnected();
+
         $userManager = new UserManager();
         $user = $userManager->getUserByEmail($_SESSION['log']);
 
@@ -38,6 +37,7 @@ class UserController{
         $userManager = new UserManager();
         $user= new User(["name" => DEFAULT_NAME, "pseudo" => $_POST['pseudo'], "password" => password_hash($_POST['password'], PASSWORD_BCRYPT), "profilImage" => DEFAULT_IMAGE_PROFIL, "email" => $_POST['email']]);
         $userManager->addUser($user);
+        $user = $userManager->getUserByEmail($user->getEmail());
 
         $view = new View("Mon compte");
         $view->render("account",["user" => $user]);

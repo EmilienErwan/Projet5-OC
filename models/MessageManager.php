@@ -21,13 +21,9 @@ class MessageManager extends AbstractEntity{
      * @return Message[]
      */
     public function getMessagesByUserId(int $userId): array{
-        $messages = [];
-        $query = "SELECT id FROM messages WHERE id_user = ?";
-        $stmt = $this->pdo->query( $query, [$userId] );
-        while($message = $stmt->fetch(PDO::FETCH_ASSOC)){
-            $messages[] = new Message($message);
-        }
-        return $messages;
+        $query = "SELECT content, dateSend, idUser, idReceiver FROM messages WHERE idUser = ? OR idReceiver = ? ORDER BY dateSend ASC";
+        $stmt = $this->pdo->query( $query, [$userId, $userId] );
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
     /**
      * Retourne un tableau de tous les utilisateurs avec qui l'utilisateur a échangé
@@ -35,13 +31,9 @@ class MessageManager extends AbstractEntity{
      * @return array
      */
     public function getDistinctIdReceiver(int $userId): array{
-        $idReceiver = [];
-        $query = "SELECT DISTINCT id_receiver FROM messages WHERE id_user = ?";
+        $query = "SELECT DISTINCT idReceiver FROM messages WHERE idUser = ?";
         $stmt = $this->pdo->query( $query, [$userId] );
-        while($receiver = $stmt->fetch(PDO::FETCH_ASSOC)){
-            $idReceiver[] = $receiver;
-        }
-        return $idReceiver;
+        return $stmt->fetchAll(PDO::FETCH_COLUMN);
     }
     /**
      * Retourne les messages échangés entre deux utilisateurs
@@ -50,13 +42,9 @@ class MessageManager extends AbstractEntity{
      * @return array
      */
     public function getMessagesBetweenTwoUsers(int $userId, int $receiverId): array{
-        $messages = [];
-        $query = "SELECT content FROM messages WHERE id_user = ? AND id_receiver = ?";
-        $stmt = $this->pdo->query( $query, [$userId, $receiverId] );
-        while($message = $stmt->fetch(PDO::FETCH_ASSOC)){
-            $messages[] = $message;
-        }
-        return $messages;
+        $query = "SELECT content, dateSend, idUser, idReceiver FROM messages WHERE (idUser = ? AND idReceiver = ?) OR (idUser = ? AND idReceiver = ?) ORDER BY dateSend ASC";
+        $stmt = $this->pdo->query( $query, [$userId, $receiverId, $receiverId, $userId] );
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
     /**
      * Retourne le dernier message reçu
@@ -64,7 +52,7 @@ class MessageManager extends AbstractEntity{
      * @return Message
      */
     public function getLastMessageReceive(int $userId) : ?Message{
-        $query = "SELECT * FROM messages WHERE id_user = ? ORDER BY date_send DESC LIMIT 1";
+        $query = "SELECT * FROM messages WHERE idReceiver = ? ORDER BY dateSend DESC LIMIT 1";
         $result = $this->pdo->query($query,[$userId]);
         return new Message($result->fetch(PDO::FETCH_ASSOC));
     }
@@ -75,7 +63,7 @@ class MessageManager extends AbstractEntity{
      * @return Message
      */
     public function getLastMessage(int $userId, int $receiverId) : ?Message{
-        $query = "SELECT * FROM messages WHERE id_user = ? AND id_receiver = ? ORDER BY date_send DESC LIMIT 1";
+        $query = "SELECT * FROM messages WHERE idUser = ? AND idReceiver = ? ORDER BY dateSend DESC LIMIT 1";
         $result = $this->pdo->query($query,[$userId, $receiverId]);
         return new Message($result->fetch(PDO::FETCH_ASSOC));
     }
@@ -104,7 +92,7 @@ class MessageManager extends AbstractEntity{
      * @return void
      */
     public function addMessage(Message $message): void{
-        $query = "INSERT INTO messages (id_user,id_receiver,content,date_send) VALUES (:id_user,:id_receiver,:content,NOW())";
-        $this->pdo->query( $query, ["id_user" => $message->getId_user(),"id_receiver" => $message->getId_receiver(),"content" => $message->getContent()] );
+        $query = "INSERT INTO messages (idUser,idReceiver,content,dateSend) VALUES (:idUser,:idReceiver,:content,NOW())";
+        $this->pdo->query( $query, ["idUser" => $message->getId_user(),"idReceiver" => $message->getIdReceiver(),"content" => $message->getContent()] );
     }
 }

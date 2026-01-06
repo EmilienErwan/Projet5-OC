@@ -5,7 +5,7 @@ class User extends AbstractEntity{
     private string $name;
     private string $pseudo;
     private string $password;
-    private string $library;
+    private string $library ="[]";
     private DateTime $inscriptionDate;
     private string $profilImage;
     private string $email;
