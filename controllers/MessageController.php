@@ -25,7 +25,14 @@ class MessageController{
         foreach($receiverIds as $receiverId){
             $contacts[] = ["pseudo" => $userManager->getUserById($receiverId)->getPseudo(),"content" => $messageManager->getLastMessage($userId,$receiverId),"idReceiver" => $receiverId];
         }
-        $lastMessageReceiverId = $messageManager->getLastMessageReceive($userId)->getIdUser();
+        if(isset($_GET['id'])){
+            $lastMessageReceiverId = $_GET['id'];
+            if($messageManager->getMessagesBetweenTwoUsers($userId, $lastMessageReceiverId) == null){
+                throw new Exception("Vous n'avez pas de messages avec cet utilisateur.");
+            }
+        }else{
+            $lastMessageReceiverId = $messageManager->getLastMessageReceive($userId)->getIdUser();
+        }
         $messages = $messageManager->getMessagesByUserId($userId);
 
         $view = new View("Messagerie");

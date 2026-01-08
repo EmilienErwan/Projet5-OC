@@ -93,6 +93,6 @@ class MessageManager extends AbstractEntity{
      */
     public function addMessage(Message $message): void{
         $query = "INSERT INTO messages (idUser,idReceiver,content,dateSend) VALUES (:idUser,:idReceiver,:content,NOW())";
-        $this->pdo->query( $query, ["idUser" => $message->getId_user(),"idReceiver" => $message->getIdReceiver(),"content" => $message->getContent()] );
+        $this->pdo->query( $query, ["idUser" => $message->getIdUser(),"idReceiver" => $message->getIdReceiver(),"content" => $message->getContent()] );
     }
 }

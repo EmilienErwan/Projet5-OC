@@ -1,11 +1,7 @@
 <?php
 $contacts = $params['contacts'];
 $messages = $params['messages'];
-if(isset($_GET['id'])){
-    $lastMessageReceiverId = $_GET['id'];
-}else{
-    $lastMessageReceiverId = $params['id'];
-}
+$lastMessageReceiverId = $params['id'];
 $userManager = new UserManager();
 ?>
 

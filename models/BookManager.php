@@ -3,12 +3,25 @@
 class BookManager extends AbstractEntity{
     /**
      * Récupère tous les livres diponibles
-     * @param string $status
-     * @return Book[]
+     * @return array
      */
     public function getBooksByStatus(): array{
         $bookObject = [];
         $query = "SELECT * FROM books WHERE status = true";
+        $stmt = $this->pdo->query($query);
+        $books = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        foreach($books as $book){
+            $bookObject[] = new Book($book);
+        }
+        return $bookObject;
+    }
+    /**
+     * Récupère les 4 derniers livres ajoutés
+     * @return array
+     */
+    public function getBooksByAddedDate(): array{
+        $bookObject = [];
+        $query = "SELECT * FROM books WHERE status = true ORDER BY AddedDate DESC LIMIT 4";
         $stmt = $this->pdo->query($query);
         $books = $stmt->fetchAll(PDO::FETCH_ASSOC);
         foreach($books as $book){
@@ -67,7 +80,7 @@ class BookManager extends AbstractEntity{
      * @return void
      */
     public function addBook(Book $book): void{
-        $query = "INSERT INTO books (title,author,description,status,image,idUser) VALUES (:title,:author,:description,:status,:image,:idUser)";
+        $query = "INSERT INTO books (title,author,description,status,image,idUser,AddedDate) VALUES (:title,:author,:description,:status,:image,:idUser,Now())";
         $this->pdo->query( $query, ["title" => $book->getTitle(),"author" => $book->getAuthor(),"description" => $book->getDescription(),"status" => $book->getStatus(),"image" => $book->getImage(),"idUser" => $book->getIdUser()] );
     }
 }

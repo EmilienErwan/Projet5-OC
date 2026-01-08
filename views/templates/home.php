@@ -13,6 +13,18 @@
 <img src="<?= $randomBook->getImage() ?>" alt="<?= $randomBook->getTitle() ?>">
 <?=  $userManager->getUserById($randomBook->getIdUser())->getPseudo() ?>
 <h1>Les derniers livres ajoutés</h1>
+<div class="lastBooks">
+    <?php 
+    $lastBooks = $bookManager->getBooksByAddedDate();
+    foreach($lastBooks as $book){ ?>
+        <a href="index.php?action=showBook&id=<?= $book->getId() ?>"><article class="bookCard">
+            <img src="<?= $book->getImage() ?>" alt="<?= $book->getTitle() ?>">
+            <h2><?= $book->getTitle() ?></h2>
+            <h3>Par <?= $book->getAuthor() ?></h3>
+            <p>Ajouté par <?= $userManager->getUserById($book->getIdUser())->getPseudo() ?></p>
+        </article></a>
+    <?php } ?>
+</div>
 <button><a href="index.php?action=showExchangeBooks">Voir tous les livres</a></button>
 <h1>Comment ça marche ?</h1>
 <div class="steps">

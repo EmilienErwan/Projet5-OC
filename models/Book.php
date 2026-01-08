@@ -8,6 +8,7 @@ class Book extends AbstractEntity{
     private string $image;
     private bool $status;
     private int $idUser;
+    private DateTime $AddedDate;
     public function getId(): int{
         return $this->id_book;
     }
@@ -49,5 +50,15 @@ class Book extends AbstractEntity{
     }
     public function setIdUser($idUser): void{
         $this->idUser = $idUser;
+    }
+    public function getAddedDate(): DateTime{
+        return $this->AddedDate;
+    }
+    public function setAddedDate($AddedDate): void{
+        if($AddedDate instanceof DateTime){
+            $this->AddedDate = $AddedDate;
+            return;
+        }
+        $this->AddedDate = new DateTime($AddedDate);
     }
 }
