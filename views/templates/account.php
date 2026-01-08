@@ -41,7 +41,7 @@ $user = $params['user'];
                     <div class="author"><?= $book->getAuthor() ?></div>
                     <div class="description"><?= $book->getDescription() ?></div>
                     <div class="status"><?= $book->getStatus() ?></div>
-                    <div class="action"><button class="editBook">Editer</button><button class="deleteBook">Supprimer</button></div>
+                    <div class="action"><a href="index.php?action=showEditBook&id=<?= $book->getId() ?>">Editer</a><a href="index.php?action=deleteBook&id=<?= $book->getId() ?>">Supprimer</a></div>
                 </div>
             <?php }
         } ?>

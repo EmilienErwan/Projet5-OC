@@ -31,6 +31,21 @@ try {
                 $controller->showBook();
                 break;
 
+            case 'deleteBook':
+                $controller = new BookController();
+                $controller->deleteBook();
+                break;
+
+            case 'showEditBook':
+                $controller = new BookController();
+                $controller->editBook();
+                break;
+
+            case 'updateBook':
+                $controller = new BookController();
+                $controller->updateBook();
+                break;
+
             case 'connectUser':
                 $controller = new UserController();
                 $controller->connectUser();

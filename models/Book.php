@@ -1,7 +1,7 @@
 <?php
 
 class Book extends AbstractEntity{
-    private int $id_book;
+    private int $idBook;
     private string $title;
     private string $description;
     private string $author;
@@ -10,10 +10,10 @@ class Book extends AbstractEntity{
     private int $idUser;
     private DateTime $AddedDate;
     public function getId(): int{
-        return $this->id_book;
+        return $this->idBook;
     }
-    public function setId($id_book): void{
-        $this->id_book = $id_book;
+    public function setId($idBook): void{
+        $this->idBook = $idBook;
     }
     public function getTitle(): string{
         return $this->title;

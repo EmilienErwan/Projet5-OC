@@ -24,4 +24,45 @@ class BookController{
         $view = new View("Détail du livre");
         $view->render("detailBook",["book" => $book]);
     }
+    public function deleteBook(): void {
+        if(!isset($_GET['id'])){
+            throw new Exception("Livre introuvable.");
+        }
+        $bookManager = new BookManager();
+        $book = $bookManager->getBookById($_GET['id']);
+        if(!$book){
+            throw new Exception("Livre introuvable.");
+        }
+        $bookManager->deleteBook($_GET['id']);
+        header("Location: index.php?action=showAccount");
+    }
+    public function editBook(): void {
+        if(!isset($_GET['id'])){
+            throw new Exception("Livre introuvable.");
+        }
+        $bookManager = new BookManager();
+        $book = $bookManager->getBookById($_GET['id']);
+        if(!$book){
+            throw new Exception("Livre introuvable.");
+        }
+        $view = new View("Édition du livre");
+        $view->render("editBook",["book" => $book]);
+    }
+    public function updateBook(): void {
+        if(!isset($_GET['id'])){
+            throw new Exception("Livre introuvable.");
+        }
+        $bookManager = new BookManager();
+        $book = $bookManager->getBookById($_GET['id']);
+        if(!$book){
+            throw new Exception("Livre introuvable.");
+        }
+        $book->setTitle($_POST['title']);
+        $book->setAuthor($_POST['author']);
+        $book->setDescription($_POST['description']);
+        $book->setStatus($_POST['status']);
+        var_dump($book);
+        $bookManager->updateBook($book);
+        header("Location: index.php?action=showAccount");
+    }
 }

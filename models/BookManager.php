@@ -58,12 +58,12 @@ class BookManager extends AbstractEntity{
     }
     /**
      * Supprime un livre par son id
-     * @param int $id_book
+     * @param int $idBook
      * @return void
      */
-    public function deleteBook(int $id_book): void{
+    public function deleteBook(int $idBook): void{
         $query = "DELETE FROM books WHERE id = ?";
-        $this->pdo->query( $query, [$id_book] );
+        $this->pdo->query( $query, [$idBook] );
     }
     /**
      * Modification d'un livre
@@ -72,7 +72,7 @@ class BookManager extends AbstractEntity{
      */
     public function updateBook(Book $book): void {
         $query = "UPDATE books SET title = :title, author = :author, description = :description, status = :status, image = :image, idUser = :idUser ";
-        $this->pdo->query($query, ["title" => $book->getTitle(),"author" => $book->getAuthor(),"decription" => $book->getDescription(),"status" => $book->getStatus(),"image" => $book->getImage(),"idUser" => $book->getIdUser()]);
+        $this->pdo->query($query, ["title" => $book->getTitle(),"author" => $book->getAuthor(),"description" => $book->getDescription(),"status" => $book->getStatus(),"image" => $book->getImage(),"idUser" => $book->getIdUser()]);
     }
     /**
      * Ajoute un livre dans la bdd
