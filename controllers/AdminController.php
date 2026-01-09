@@ -7,7 +7,12 @@ class AdminController{
      */
     public function showHome():void
     {
+        if(isset($_SESSION['log'])) {
+            $connected = "disconnectUser";
+        } else {
+            $connected = "showConnectionForm";
+        }
         $view = new View("Accueil");
-        $view->render("home");
+        $view->render("home", ['connected' => $connected]);
     }
 }

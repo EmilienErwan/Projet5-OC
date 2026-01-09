@@ -1,0 +1,147 @@
+:root {
+    --primary-color:#F5F3EF;
+    --secondary-color:#FAF9F7;
+}
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--primary-color);
+}
+a {
+    text-decoration: none;
+    color: inherit;
+}
+button {
+    background-color: #00AC66;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    font-size: 16px;
+}
+button:hover {
+    background-color: #006D41;
+}
+/** Menu css **/
+nav {
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    margin: auto;
+    max-width: 1200px;
+}
+nav a {
+    margin: 0 10px;
+}
+nav .logo{
+    align-items: left;
+}
+nav .logo img{
+    height: 50px;
+}
+nav .leftMenu{
+    display: flex;
+    align-items: left;
+    margin-left: 100px;
+}
+nav .rightMenu{
+    margin-left: auto;
+    display: flex;
+    align-items: right;
+}
+/** Home css **/
+.section h1 {
+    color : black;
+    text-align: center;
+}
+.section-hero {
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1000px; 
+    margin: 0 auto;
+    gap : 20px;
+    padding : 80px;
+}
+.section-hero .hero-text {
+    max-width: 500px;
+}
+.section-hero .hero-image img {
+    width: 100%;
+    max-width: 450px;
+    max-height: 900px;
+    border-radius: 10px;
+}
+.section-hero .hero-image figcaption {
+    text-align: right;
+    margin-top: 10px;
+    font-style: italic;
+    color: #555;
+}
+.section-lastBooks {
+    background-color: var(--secondary-color);
+    align-items: center;
+    text-align: center;
+    padding : 80px;
+}
+.section-lastBooks .lastBooks {
+    display: flex;
+    gap: 20px;
+    padding-bottom: 10px;
+}
+.section-lastBooks .bookCard {
+    min-width: 200px;
+    border-radius: 10px;
+    background-color: white;
+    text-align: center;
+}
+.section-lastBooks img {
+    width: 100%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+.section-lastBooks figcaption {
+    padding: 10px;
+}
+.section-lastBooks figcaption:nth-of-type(1) {
+    font-weight: bold;
+}
+.section-lastBooks figcaption:nth-of-type(2) {
+    color: #A6A6A6;
+}
+.section-lastBooks figcaption:nth-of-type(3) {
+    color: #A6A6A6;
+    font-style: italic;
+}
+.section-steps {
+    padding : 80px;
+    text-align: center;
+}
+.section-steps .steps {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    padding: 20px;
+}
+.section-steps .step {
+    max-width: 200px;
+    background-color: white;
+    border-radius: 10px;
+    padding: 40px;
+}
+.section-values {
+    padding : 80px;
+    align-items: center;
+    margin : auto;
+}
+.section-values p {
+    max-width: 500px;
+    margin : auto;
+    padding : 8px;
+}
+.section-values em {
+    color : #A6A6A6;
+    font-size: 12px;
+}
+/** End Home css **/
