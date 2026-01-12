@@ -83,4 +83,7 @@ class BookManager extends AbstractEntity{
         $query = "INSERT INTO books (title,author,description,status,image,idUser,AddedDate) VALUES (:title,:author,:description,:status,:image,:idUser,Now())";
         $this->pdo->query( $query, ["title" => $book->getTitle(),"author" => $book->getAuthor(),"description" => $book->getDescription(),"status" => $book->getStatus(),"image" => $book->getImage(),"idUser" => $book->getIdUser()] );
     }
+    public function bookStatus(bool $status): string {
+        return $status ? "Disponible" : "Non dispo.";
+    }
 }

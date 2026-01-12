@@ -326,3 +326,112 @@ footer .footerContent img {
     font-size: 16px;
 }
 /** End Messages css **/
+/** Account css **/
+.accountLayout {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-left : 10%;
+    margin-right : 10%;
+    padding-bottom: 40px;
+}
+.accountLayout .accountHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap : 20px;
+}
+.accountLayout .description {
+    flex : 1;
+    gap: 20px;
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+}
+.accountLayout .description .descriptionImage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.accountLayout .description .descriptionImage img {
+    display: flex;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+.accountLayout .description .descriptionImage a {
+    display: flex;
+}
+.accountLayout .description .descriptionInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+    border-top: #292929 1px solid;
+}
+.accountLayout .infoAccount {
+    flex : 1;
+    background-color: white;
+    margin: 20px 0;
+    border-radius: 10px;
+}
+.accountLayout .infoAccount form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    padding-left: 100px;
+    padding-right: 100px;
+}
+.accountLayout .infoAccount form input {
+    width: 300px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.accountLayout .infoAccount form button {
+    width : 150px;
+    align-self: flex-start;
+}
+.accountLayout .library{
+    flex : 3;
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+}
+.accountLayout .library .headerLibrary {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    border-bottom: #F5F3EF 1px solid;
+    padding : 10px;
+}
+.accountLayout .library .libraryList {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.accountLayout .library .bookInLibrary {
+    display : flex;
+    flex-direction : row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    font-size: 12px;
+    padding : 10px;
+}
+.accountLayout .library .bookInLibraryElse {
+    display : flex;
+    flex-direction : row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #EDF2F6;
+    font-size: 12px;
+    padding : 10px;
+}
+.accountLayout .library img {
+    width: 78px;
+    height: 78px;
+}
