@@ -23,7 +23,10 @@ class MessageController{
         $receiverIds = $messageManager->getDistinctIdReceiver($userId);
         $contacts = [];
         foreach($receiverIds as $receiverId){
-            $contacts[] = ["pseudo" => $userManager->getUserById($receiverId)->getPseudo(),"content" => $messageManager->getLastMessage($userId,$receiverId),"idReceiver" => $receiverId];
+            $contacts[] = ["pseudo" => $userManager->getUserById($receiverId)->getPseudo(),
+                        "content" => $messageManager->getLastMessage($userId,$receiverId),
+                        "idReceiver" => $receiverId,
+                        "profilImage" => $userManager->getUserById($receiverId)->getProfilImage()];
         }
         if(isset($_GET['id'])){
             $lastMessageReceiverId = $_GET['id'];
