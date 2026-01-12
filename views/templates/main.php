@@ -38,7 +38,12 @@ if(isset($_SESSION['log'])) {
             <?=  $content ?>
         </main>
         <footer>
-            <p>Politique de confidentialité Mentions légales Tom Troc</p>
+            <div class="footerContent">
+                <p>Politique de confidentialité</p>
+                <p>Mentions légales</p>
+                <p>Tom Troc</p>
+                <img src="./uploads/images/logos/logo_footer.png" alt="Logo Tom Troc">
+            </div>
         </footer>
     </body>
 </html>
