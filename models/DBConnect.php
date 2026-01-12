@@ -3,7 +3,7 @@ class DBConnect{
     private static $instance;
     private $pdo;
     public function __construct(){
-        $this->pdo =new PDO("mysql:dbname=".DB_NAME.";host=".DB_HOST ,DB_USER,DB_PASS);
+        $this->pdo =new PDO("mysql:dbname=".$_ENV['DB_NAME'].";host=".$_ENV['DB_HOST'], $_ENV['DB_USER'], $_ENV['DB_PASSWORD']);
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
     public function getPDO(): PDO{

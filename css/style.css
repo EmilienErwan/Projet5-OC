@@ -28,28 +28,34 @@ nav {
     padding: 10px 20px;
     display: flex;
     align-items: center;
-    margin: auto;
+    margin: 0 auto;
     max-width: 1200px;
 }
 nav a {
     margin: 0 10px;
+    color : #292929;
+}
+nav a.active {
+    font-weight: bold;
 }
 nav .logo{
-    align-items: left;
+    display: flex;
+    align-items: center;
 }
 nav .logo img{
     height: 50px;
 }
 nav .leftMenu{
     display: flex;
-    align-items: left;
+    align-items: center;
     margin-left: 100px;
 }
 nav .rightMenu{
     margin-left: auto;
     display: flex;
-    align-items: right;
+    align-items: center;
 }
+/** End Menu css **/
 /** Home css **/
 .section h1 {
     color : black;

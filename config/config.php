@@ -13,8 +13,22 @@
     define('DEFAULT_IMAGE_BOOK', "'./uploads/images/userImage/default_book_image.jpg'"); // Le chemin vers l'image par défaut du profil.
     define('DEFAULT_NAME', 'Utilisateur Tom Troc'); // Le nom par défaut d'un utilisateur.
 
-    define('DB_HOST', 'localhost');
-    define('DB_NAME', 'tomTroc');
-    define('DB_USER', 'root');
-    define('DB_PASS', '');
+$envPath = __DIR__ . '/../.env';
+
+if (!file_exists($envPath)) {
+    throw new Exception('.env introuvable');
+}
+
+$lines = file($envPath, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+
+foreach ($lines as $line) {
+    if (str_starts_with(trim($line), '#')) {
+        continue;
+    }
+
+    [$key, $value] = explode('=', $line, 2);
+    $_ENV[trim($key)] = trim($value);
+}
+
+
 
