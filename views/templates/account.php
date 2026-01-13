@@ -32,7 +32,7 @@ $user = $params['user'];
         </div>
     </div>
     <div class="library">
-        <div class="headerLibrary">
+        <div class="headerLibrary libraryGrid">
             <div class="imageBook">Image</div>
             <div class="title">Titre</div>
             <div class="author">Auteur</div>
@@ -47,9 +47,9 @@ $user = $params['user'];
             <div class="libraryList">
                 <?php foreach($library as $book){ 
                     if($book->getId()%2 == 0){ ?>
-                        <div class="bookInLibraryElse">
+                        <div class="bookInLibraryElse libraryGrid">
                     <?php }else{ ?>
-                        <div class="bookInLibrary">
+                        <div class="bookInLibrary libraryGrid">
                     <?php } ?>
                             <div class="imageBook"><img src="<?= $book->getImage() ?>" alt=<?= $book->getTitle() ?>></div>
                             <div class="title"><?= $book->getTitle() ?></div>

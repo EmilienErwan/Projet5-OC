@@ -331,107 +331,106 @@ footer .footerContent img {
     flex: 1;
     display: flex;
     flex-direction: column;
-    margin-left : 10%;
-    margin-right : 10%;
-    padding-bottom: 40px;
+    max-width: 1100px;
+    margin: 0 auto;
+    gap : 40px;
+    padding : 40px 0;
 }
 .accountLayout .accountHeader {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    gap : 20px;
+    align-items: stretch;
+    gap : 40px;
 }
 .accountLayout .description {
     flex : 1;
     gap: 20px;
     background-color: white;
-    padding: 10px;
-    border-radius: 10px;
+    padding: 20px;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
 }
 .accountLayout .description .descriptionImage {
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap : 10px;
 }
 .accountLayout .description .descriptionImage img {
-    display: flex;
     width: 100px;
     height: 100px;
     border-radius: 50%;
-}
-.accountLayout .description .descriptionImage a {
-    display: flex;
 }
 .accountLayout .description .descriptionInfo {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 0 auto;
+    gap : 5px;
     border-top: #292929 1px solid;
 }
 .accountLayout .infoAccount {
     flex : 1;
     background-color: white;
-    margin: 20px 0;
-    border-radius: 10px;
+    border-radius: 16px;
 }
 .accountLayout .infoAccount form{
     display: flex;
     flex-direction: column;
     gap: 10px;
-    padding: 10px;
-    padding-left: 100px;
-    padding-right: 100px;
+    max-width: 300px;
+    margin : 0 auto;
 }
 .accountLayout .infoAccount form input {
-    width: 300px;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
 .accountLayout .infoAccount form button {
     width : 150px;
-    align-self: flex-start;
 }
 .accountLayout .library{
-    flex : 3;
     background-color: white;
     border-radius: 10px;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
+}
+.accountLayout .library .libraryGrid {
+    display: grid;
+    grid-template-columns: 80px 2fr 1.5fr 3fr 1fr 1fr 1fr;
+    align-items: center;
+    gap: 20px;
 }
 .accountLayout .library .headerLibrary {
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
     border-bottom: #F5F3EF 1px solid;
-    padding : 10px;
-}
-.accountLayout .library .libraryList {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-.accountLayout .library .bookInLibrary {
-    display : flex;
-    flex-direction : row;
-    justify-content: space-between;
-    align-items: center;
-    background-color: white;
+    padding : 15px;
     font-size: 12px;
-    padding : 10px;
+    color: #888;
 }
-.accountLayout .library .bookInLibraryElse {
-    display : flex;
-    flex-direction : row;
-    justify-content: space-between;
-    align-items: center;
+.bookInLibrary, .bookInLibraryElse {
+    padding: 15px;
+    font-size: 12px;
+}
+.bookInLibraryElse {
     background-color: #EDF2F6;
-    font-size: 12px;
-    padding : 10px;
 }
 .accountLayout .library img {
     width: 78px;
     height: 78px;
+    object-fit: cover;
+    border-radius: 5px;
 }
+.accountLayout .status {
+    padding : 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    width : fit-content;
+}
+.accountLayout .actionEdit a {
+    color : #292929;
+    font-weight: 500;
+}
+.accountLayout .actionDelete a {
+    color : #FF4C4C;
+}
+/** End Account css **/
