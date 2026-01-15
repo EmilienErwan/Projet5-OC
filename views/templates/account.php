@@ -5,6 +5,7 @@ $user = $params['user'];
 ?>
 
 <div class="accountLayout">
+    <h1>Mon compte</h1>
     <div class="accountHeader">
         <div class="description">
             <div class="descriptionImage">

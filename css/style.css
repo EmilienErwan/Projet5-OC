@@ -434,3 +434,65 @@ footer .footerContent img {
     color : #FF4C4C;
 }
 /** End Account css **/
+/** Detail Book css **/
+.articleList {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    padding: 40px 0;
+}
+.article {
+    display: flex;
+    background-color: white;
+    width : 100%;
+}
+.bookImage {
+    flex: 1;
+    max-width : 720px;
+}
+.bookImage img {
+    width : 100%;
+    height : 100%;
+    object-fit: cover;
+    display: block;
+}
+.bookInfo {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 60px 40px;
+    margin: 0 auto;
+    max-width: 485px;
+}
+.bookInfo .bar {
+    border :  #A6A6A6 1px solid ; 
+    width : 27px;
+}
+.bookInfo h2 {
+    font-size: 36px;
+}
+.bookInfo h4 {
+    font-size: 8px;
+    text-transform: uppercase;
+}
+.bookInfo .author {
+    font-size: 16px;
+    color: #A6A6A6;
+}
+.bookInfo .description {
+    font-size: 14px;
+    color: #292929;
+}
+.bookInfo .owner {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.bookInfo .owner img {
+    width : 48px;
+    height : 48px;
+    border-radius: 50%;
+}
+
+/** End Detail Book css **/

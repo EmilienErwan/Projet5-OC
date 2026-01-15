@@ -4,16 +4,26 @@
      */
     $userManager = new UserManager();
     $book = $params['book'];
+    $user = $userManager->getUserById($book->getIdUser())
 ?>
 
-<input type="text" class="searchBar" placeholder="Rechercher un livre">
 <div class="articleList">
         <article class="article">
-            <a class="info" href="index.php?action=showBook&id=<?= $book->getId() ?>"><img src=<?= $book->getImage() ?>></a>
-            <h2><?= $book->getTitle() ?></h2>
-            <p><?= "par ". $book->getAuthor() ?></p>
-            <p><?= "Description ". $book->getDescription() ?></p>
-            <p><?= "Propriétaire " . $userManager->getUserById($book->getIdUser())->getPseudo() ?></p>
-            <button class="messages">Envoyer un message</button>
+            <div class="bookImage">
+                <a class="info" href="index.php?action=showBook&id=<?= $book->getId() ?>"><img src=<?= $book->getImage() ?>></a>
+            </div>
+            <div class="bookInfo">
+                <h2><?= $book->getTitle() ?></h2>
+                <p class="author"><?= "par ". $book->getAuthor() ?></p>
+                <p class="bar"> </p>
+                <h4>Description</h4>
+                <p class="description"><?= $book->getDescription() ?></p>
+                <h4>Propriétaire</h4>
+                <div class="owner">
+                    <img src= "<?= $user->getProfilImage() ?>">
+                    <span><?= $user->getPseudo() ?></span>
+                </div>
+                <button class="messages">Envoyer un message</button>
+            </div>
         </article>
 </div>
