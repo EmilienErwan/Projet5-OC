@@ -561,3 +561,47 @@ footer .footerContent img {
     align-self: flex-start;
 }
 /** End editBook css **/
+/** InscriptionForm css **/
+.inscription-form, .connection-form {
+    display: flex;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+.inscription-form .formWrapper, .connection-form .formWrapper{
+    flex: 0 0 480px;
+    padding: 80px 60px;
+    display: flex;
+    align-items: center;
+}
+.inscription-form form, .connection-form form{
+    width: 100%;
+}
+.inscription-form .formGrid, .connection-form .formGrid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.inscription-form label, .connection-form label {
+    color : #A6A6A6;
+    font-size: 14px;
+}
+.inscription-form input, .connection-form input {
+    background-color: #FFFFFF;
+    border: none;
+    border-radius: 6px;
+    padding: 12px;
+    border: #F0F0F0 1px solid;
+}
+.inscription-form h2,.connection-form h2 {
+    font-size: 36px;
+}
+.inscription-form p,.connection-form p {
+    font-size: 14px;
+}
+.inscription-form a,.connection-form a {
+    text-decoration: underline;
+}
+.inscription-form img,.connection-form img {
+    object-fit: cover;
+}
+/** End InscriptionForm css **/
