@@ -23,7 +23,7 @@
                     <img src= "<?= $user->getProfilImage() ?>">
                     <span><?= $user->getPseudo() ?></span>
                 </div>
-                <button class="messages">Envoyer un message</button>
+                <button class="messages" ><a href="index.php?action=showMessages&idUser=<?= $user->getId() ?>">Envoyer un message</a></button>
             </div>
         </article>
 </div>

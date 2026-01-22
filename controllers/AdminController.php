@@ -1,6 +1,13 @@
 <?php
 
 class AdminController{
+    private function checkIfUserIsConnected() : void
+    {
+        // On vérifie que l'utilisateur est connecté.
+        if (!isset($_SESSION['email'])) {
+            header("Location: index.php?action=showConnectionForm");
+        }
+    }
     /**
      * Affiche la vue messages.php avec les contacts et derniers messages
      * @return void
@@ -9,5 +16,32 @@ class AdminController{
     {
         $view = new View("Accueil");
         $view->render("home");
+    }
+    public function updateProfilImage() : void {
+        $this->checkIfUserIsConnected();
+
+        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+            $userId = $_SESSION['id'];
+
+            $imageManager = new ImageManager();
+            $imageManager->saveImage('userImage',$userId);
+
+            header('Location: index.php?action=showAccount');
+        }
+        $view = new View("Modifier l'image");
+        $view->render("editProfilImage");
+    }
+    public function updateBookImage() : void {
+        if(!isset($_GET['id'])){
+            throw new Exception("Livre inexistant");
+        }
+        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+            $imageManager = new ImageManager();
+            $imageManager->saveImage('bookImage',$_GET['id']);
+
+            header('Location: index.php?action=showBook&id='. $_GET['id']);
+        }
+        $view = new View("Modifier l'image");
+        $view->render("editBookImage");
     }
 }

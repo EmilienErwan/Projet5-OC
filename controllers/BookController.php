@@ -61,7 +61,6 @@ class BookController{
         $book->setAuthor($_POST['author']);
         $book->setDescription($_POST['description']);
         $book->setStatus($_POST['status']);
-        var_dump($book);
         $bookManager->updateBook($book);
         header("Location: index.php?action=showAccount");
     }

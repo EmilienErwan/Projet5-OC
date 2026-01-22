@@ -45,6 +45,11 @@ try {
                 $controller = new BookController();
                 $controller->updateBook();
                 break;
+            
+            case 'editBookImage':
+                $controller = new AdminController();
+                $controller->updateBookImage();
+                break;
 
             case 'connectUser':
                 $controller = new UserController();
@@ -71,6 +76,11 @@ try {
                 $controller->disconnectUser();
                 break;
 
+            case 'editProfilImage':
+                $controller = new AdminController();
+                $controller->updateProfilImage();
+                break;
+                
             default:
                 $controller = new AdminController();
                 $controller->showHome();

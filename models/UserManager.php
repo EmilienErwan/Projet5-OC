@@ -35,8 +35,8 @@ class UserManager extends AbstractEntity{
      * @return void
      */
     public function updateUser(User $user): void {
-        $query = "UPDATE users SET name = :name, pseudo = :pseudo, password = :password, library = :library, email = :email";
-        $this->pdo->query($query, ["name" => $user->getName(),"pseudo" => $user->getPseudo(),"password" => $user->getPassword(),"library" => $user->getLibrary(), "email" => $user->getEmail()]);
+        $query = "UPDATE users SET name = :name, pseudo = :pseudo, password = :password, library = :library, email = :email, profilImage = :profilImage WHERE id =".$user->getId()."";
+        $this->pdo->query($query, ["name" => $user->getName(),"pseudo" => $user->getPseudo(),"password" => $user->getPassword(),"library" => $user->getLibrary(), "email" => $user->getEmail(),"profilImage" => $user->getProfilImage()]);
     }
     /**
      * Récupère et modifie la bibliothèque

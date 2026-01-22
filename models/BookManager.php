@@ -71,7 +71,7 @@ class BookManager extends AbstractEntity{
      * @return void
      */
     public function updateBook(Book $book): void {
-        $query = "UPDATE books SET title = :title, author = :author, description = :description, status = :status, image = :image, idUser = :idUser ";
+        $query = "UPDATE books SET title = :title, author = :author, description = :description, status = :status, image = :image, idUser = :idUser WHERE id=".$book->getId()."";
         $this->pdo->query($query, ["title" => $book->getTitle(),"author" => $book->getAuthor(),"description" => $book->getDescription(),"status" => $book->getStatus(),"image" => $book->getImage(),"idUser" => $book->getIdUser()]);
     }
     /**

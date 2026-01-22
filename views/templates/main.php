@@ -1,5 +1,5 @@
 <?php
-if(isset($_SESSION['log'])) {
+if(isset($_SESSION['email'])) {
     $connected = "disconnectUser";
 } else {
     $connected = "showConnectionForm";

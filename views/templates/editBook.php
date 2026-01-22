@@ -9,7 +9,7 @@ $book = $params['book'];
         <div class ="bookImage">
             <label for="image">Photo</label>
             <img src="<?= htmlspecialchars($book->getImage()) ?>" alt="<?= htmlspecialchars($book->getTitle()) ?>">
-            <a href="">Modifier la photo</a>
+            <a href="index.php?action=editBookImage&id=<?= $book->getId() ?>">Modifier la photo</a>
         </div>
         <div class ="bookInfo">
             <label for="title">Titre</label>

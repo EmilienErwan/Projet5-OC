@@ -4,7 +4,7 @@ class MessageController{
     private function checkIfUserIsConnected() : void
     {
         // On vérifie que l'utilisateur est connecté.
-        if (!isset($_SESSION['log'])) {
+        if (!isset($_SESSION['email'])) {
             header("Location: index.php?action=showConnectionForm");
         }
     }
@@ -16,28 +16,30 @@ class MessageController{
     {
         $this->checkIfUserIsConnected();
         $userManager = new UserManager();
-        $user = $userManager->getUserByEmail($_SESSION['log']);
-        $userId = $user->getId();
+        if(isset($_GET["idUser"]) && $_GET["idUser"] != ""){
 
-        $messageManager = new MessageManager();
-        $receiverIds = $messageManager->getDistinctIdReceiver($userId);
-        $contacts = [];
-        foreach($receiverIds as $receiverId){
-            $contacts[] = ["pseudo" => $userManager->getUserById($receiverId)->getPseudo(),
-                        "content" => $messageManager->getLastMessage($userId,$receiverId),
-                        "idReceiver" => $receiverId,
-                        "profilImage" => $userManager->getUserById($receiverId)->getProfilImage()];
-        }
-        if(isset($_GET['id'])){
-            $lastMessageReceiverId = $_GET['id'];
-            if($messageManager->getMessagesBetweenTwoUsers($userId, $lastMessageReceiverId) == null){
-                throw new Exception("Vous n'avez pas de messages avec cet utilisateur.");
-            }
         }else{
-            $lastMessageReceiverId = $messageManager->getLastMessageReceive($userId)->getIdUser();
-        }
-        $messages = $messageManager->getMessagesByUserId($userId);
+            $userId = $_SESSION['id'];
 
+            $messageManager = new MessageManager();
+            $receiverIds = $messageManager->getDistinctIdReceiver($userId);
+            $contacts = [];
+            foreach($receiverIds as $receiverId){
+                $contacts[] = ["pseudo" => $userManager->getUserById($receiverId)->getPseudo(),
+                            "content" => $messageManager->getLastMessage($userId,$receiverId),
+                            "idReceiver" => $receiverId,
+                            "profilImage" => $userManager->getUserById($receiverId)->getProfilImage()];
+            }
+            if(isset($_GET['id'])){
+                $lastMessageReceiverId = $_GET['id'];
+                if($messageManager->getMessagesBetweenTwoUsers($userId, $lastMessageReceiverId) == null){
+                    throw new Exception("Vous n'avez pas de messages avec cet utilisateur.");
+                }
+            }else{
+                $lastMessageReceiverId = $messageManager->getLastMessageReceive($userId)->getIdUser();
+            }
+            $messages = $messageManager->getMessagesByUserId($userId);
+        }
         $view = new View("Messagerie");
         $view->render("messages",['contacts' => $contacts,'messages' => $messages,'id' => $lastMessageReceiverId]);
     }

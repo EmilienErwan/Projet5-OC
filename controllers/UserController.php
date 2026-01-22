@@ -4,7 +4,7 @@ class UserController{
     private function checkIfUserIsConnected() : void
     {
         // On vérifie que l'utilisateur est connecté.
-        if (!isset($_SESSION['log'])) {
+        if (!isset($_SESSION['email'])) {
             header("Location: index.php?action=showConnectionForm");
         }
     }
@@ -17,7 +17,7 @@ class UserController{
         $this->checkIfUserIsConnected();
 
         $userManager = new UserManager();
-        $user = $userManager->getUserByEmail($_SESSION['log']);
+        $user = $userManager->getUserByEmail($_SESSION['email']);
 
         $view = new View("Mon compte");
         $view->render("account",["user" => $user]);
@@ -47,7 +47,12 @@ class UserController{
         $userManager = new UserManager();
         $user= $userManager->getUserByEmail($_POST['log']);
 
-        $_SESSION['log'] = $_POST['log'];
+        $_SESSION['email'] = $user->getEmail();
+        $_SESSION['id'] = $user->getId();
+        $_SESSION['name'] = $user->getName();
+        $_SESSION['pseudo'] = $user->getPseudo();
+        $_SESSION['library'] = $user->getLibrary();
+        $_SESSION['profilImage'] = $user->getProfilImage();
 
         $view = new View("Mon compte");
         $view->render("account",["user" => $user]);
@@ -60,7 +65,7 @@ class UserController{
     public function updateUser():void
     {
         $userManager = new UserManager();
-        $user= $userManager->getUserByEmail($_SESSION['log']);
+        $user= $userManager->getUserByEmail($_SESSION['email']);
         $user->setEmail($_POST['log']);
         $_SESSION['log'] = $_POST['log'];
         $user->setPseudo($_POST['pseudo']);

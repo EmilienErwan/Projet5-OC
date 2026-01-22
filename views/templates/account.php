@@ -10,7 +10,7 @@ $user = $params['user'];
         <div class="description">
             <div class="descriptionImage">
                 <img src="<?= $user->getProfilImage() ?>" alt="<?= $user->getPseudo() ?>">
-                <a href="">Modifier</a>
+                <a href="index.php?action=editProfilImage">Modifier</a>
             </div>
             <div class="descriptionInfo">
                 <p><?= $user->getPseudo() ?></p>
