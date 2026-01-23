@@ -31,13 +31,17 @@ $userManager = new UserManager();
                 <?php foreach($messages as $message){?>
                         <?php if((int)$message["idUser"] === (int)$lastMessageReceiverId || (int)$message["idReceiver"] === (int)$lastMessageReceiverId){ ?>
                             <?php if((int)$message["idUser"] === (int)$lastMessageReceiverId){ ?>
-                                <p class="receivedMessage"><?= $message["content"] ?></p>
+                                <div class = "message received">
+                                    <p class="receivedMessage"><?= $message["content"] ?></p>
+                                </div>
                             <?php }else{ ?>
-                                <p class="sentMessage"><?= $message["content"] ?></p>
+                                <div class = "message sent">
+                                    <p class="sentMessage"><?= $message["content"] ?></p>
+                                    </div>
                             <?php } ?>
                         <?php } ?>
                 <?php } ?>
-                <form action="" method="post" class="sendMessageForm">
+                <form action="index.php?action=sendMessage" method="post" class="sendMessageForm">
                     <input type="text" name="content" class="messageBar" placeholder="Tapez votre message ici" required>
                     <input type="hidden" name="idReceiver" value="<?= $lastMessageReceiverId ?>">
                     <button class="submit">Envoyer</button>

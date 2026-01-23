@@ -28,12 +28,15 @@ class BookController{
         if(!isset($_GET['id'])){
             throw new Exception("Livre introuvable.");
         }
+        $bookID = $_GET['id'];
         $bookManager = new BookManager();
-        $book = $bookManager->getBookById($_GET['id']);
+        $userManager = new UserManager();
+        $book = $bookManager->getBookById($bookID);
         if(!$book){
             throw new Exception("Livre introuvable.");
         }
-        $bookManager->deleteBook($_GET['id']);
+        $bookManager->deleteBook($bookID);
+        $userManager->updateLibrary($_SESSION['id'],$bookID, "delete");
         header("Location: index.php?action=showAccount");
     }
     public function editBook(): void {

@@ -41,10 +41,26 @@ class UserManager extends AbstractEntity{
     /**
      * Récupère et modifie la bibliothèque
      * @param int $userId
-     * @param array $data
+     * @param int $bookId
+     * @param string $choice
      * @return void
      */
-    public function updateLibrary(int $userId, array $data){
+    public function updateLibrary(int $userId, int $bookId, string $choice){
+        $user = $this->getUserById($userId);
+        $data = json_decode($user->getLibrary());
+        $allowed_choice = ['add','delete'];
+
+        if(!in_array($choice,$allowed_choice)){
+            throw new Exception("Action non réalisable");
+        }
+        if($choice == "add"){
+            $data [] = (int)$bookId;
+        }else{
+            $index = array_search((int)$bookId,$data);
+            if($index !== false){
+                unset($data[$index]);
+            }
+        }
         $datas = json_encode($data);
         $query = "UPDATE users SET library= ? WHERE id = ?";
         $this->pdo->query($query, [$datas, $userId]);

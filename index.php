@@ -15,6 +15,11 @@ try {
                 $controller = new MessageController();
                 $controller->showMessages();
                 break;
+            
+            case 'sendMessage':
+                $controller = new MessageController();
+                $controller->sendMessage();
+                break;
 
             case 'showConnectionForm':
                 $controller = new UserController();
