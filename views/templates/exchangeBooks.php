@@ -8,7 +8,10 @@
 <div class="exchangeBookLayout">
     <div class="exchangeBookHeader">
         <h1>Nos livres à l'échange</h1>
-        <input type="text" class="searchBar" placeholder= "&#128269; Rechercher un livre">
+        <form action="index.php" method="GET">
+            <input type="hidden" name="action" value="searchBooks">
+            <input type="text" name="search" class="searchBar" placeholder= "&#128269; Rechercher un livre">
+        </form>
     </div>
     <div class="exchangeBookList">
         <?php foreach($books as $book) {?>

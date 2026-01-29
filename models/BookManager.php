@@ -86,4 +86,21 @@ class BookManager extends AbstractEntity{
     public function bookStatus(bool $status): string {
         return $status ? "Disponible" : "Non dispo.";
     }
+    public function searchBooks(string $search): array {
+        $bookObject = [];
+        $sql = "SELECT * FROM books WHERE title LIKE :search OR author LIKE :search OR description LIKE :search";
+        $stmt = $this->pdo->query($sql, ["search" => "%".$search."%"]);
+        $books = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        foreach($books as $book){
+            $bookObject[] = new Book($book);
+        }
+        return $bookObject;
+    }
+    public function getLastInsertId(): int {
+        $userId = $_SESSION['id'];
+        $query = "SELECT id FROM books WHERE idUser = ? ORDER BY id DESC LIMIT 1";
+        $stmt = $this->pdo->query($query, [$userId]);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result ? (int)$result['id'] : 0;
+    }
 }

@@ -9,7 +9,7 @@ class BookController{
             throw new Exception("Aucun livre disponible à l'échange.");
         }
         $view = new View("Nos livres à l'échange");
-        $view->render("exchangeBooks",["books" => $books]);
+        $view->render("exchangeBooks",["books" => $books,"search" => $_GET['search'] ?? ""]);
     }
     public function showBook():void
     {
@@ -66,5 +66,35 @@ class BookController{
         $book->setStatus($_POST['status']);
         $bookManager->updateBook($book);
         header("Location: index.php?action=showAccount");
+    }
+    public function addBook(): void{
+        $book = new Book([
+            "title" => $_POST['title'],
+            "author" => $_POST['author'],
+            "description" => $_POST['description'],
+            "status" => $_POST['status'],
+            "image" => DEFAULT_IMAGE_PROFIL,
+            "idUser" => $_SESSION['id']
+        ]);
+        $bookManager = new BookManager();
+        $bookManager->addBook($book);
+        $userManager = new UserManager();
+        $lastBook = $bookManager->getLastInsertId();
+        $userManager->updateLibrary($_SESSION['id'], $lastBook, "add");
+        header("Location: index.php?action=showAccount");
+    }
+    public function searchBooks(): void{
+        if(!isset($_GET['search']) || empty(trim($_GET['search']))){
+            throw new Exception("Veuillez entrer un terme de recherche.");
+        }
+        $query = trim($_GET['search']);
+        $bookManager = new BookManager();
+        $books = $bookManager->searchBooks($query);
+        if(!$books){
+            $this->showExchangeBooks();
+            return;
+        }
+        $view = new View("Résultats de la recherche");
+        $view->render("exchangeBooks",["books" => $books]);
     }
 }

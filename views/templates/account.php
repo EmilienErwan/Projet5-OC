@@ -61,7 +61,9 @@ $user = $params['user'];
                             <div class="actionDelete"><a href="index.php?action=deleteBook&id=<?= $book->getId() ?>">Supprimer</a></div>
                         </div>
                     <?php } ?>
-            </div>
+                        </div>
         <?php } ?>
+            </div>
+    <a href = "">+ Ajouter un livre</a>
     </div>
 </div>

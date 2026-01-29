@@ -31,6 +31,11 @@ try {
                 $controller->showExchangeBooks();
                 break;
                 
+            case 'searchBooks':
+                $controller = new BookController();
+                $controller->searchBooks();
+                break;
+                
             case 'showBook':
                 $controller = new BookController();
                 $controller->showBook();
