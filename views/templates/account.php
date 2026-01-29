@@ -64,6 +64,6 @@ $user = $params['user'];
                         </div>
         <?php } ?>
             </div>
-    <a href = "">+ Ajouter un livre</a>
+    <a href = "index.php?action=showAddBook">+ Ajouter un livre</a>
     </div>
 </div>

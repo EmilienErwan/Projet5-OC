@@ -1,6 +1,11 @@
 <?php
 
 class BookController{
+    public function showAddBook():void
+    {
+        $view = new View("Ajouter un livre");
+        $view->render("addBook");
+    }
     public function showExchangeBooks():void
     {
         $bookManager = new BookManager();
@@ -73,7 +78,7 @@ class BookController{
             "author" => $_POST['author'],
             "description" => $_POST['description'],
             "status" => $_POST['status'],
-            "image" => DEFAULT_IMAGE_PROFIL,
+            "image" => DEFAULT_IMAGE_BOOK,
             "idUser" => $_SESSION['id']
         ]);
         $bookManager = new BookManager();

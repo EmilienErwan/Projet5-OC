@@ -35,7 +35,17 @@ try {
                 $controller = new BookController();
                 $controller->searchBooks();
                 break;
-                
+
+            case 'addBook':
+                $controller = new BookController();
+                $controller->addBook();
+                break;
+
+            case 'showAddBook':
+                $controller = new BookController();
+                $controller->showAddBook();
+                break;
+
             case 'showBook':
                 $controller = new BookController();
                 $controller->showBook();
