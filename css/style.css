@@ -105,7 +105,8 @@ nav .rightMenu{
     padding : 80px;
 }
 .section-lastBooks .lastBooks {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 20px;
     padding-bottom: 10px;
 }
@@ -117,6 +118,7 @@ nav .rightMenu{
 }
 .section-lastBooks img {
     width: 100%;
+    height: 200px;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
 }

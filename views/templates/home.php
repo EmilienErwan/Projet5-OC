@@ -23,12 +23,14 @@
         <?php 
         $lastBooks = $bookManager->getBooksByAddedDate();
         foreach($lastBooks as $book){ ?>
-            <a href="index.php?action=showBook&id=<?= $book->getId() ?>"><figure class="bookCard">
-                <img src="<?= $book->getImage() ?>" alt="<?= $book->getTitle() ?>">
-                <figcaption><?= $book->getTitle() ?></figcaption>
-                <figcaption>Par <?= $book->getAuthor() ?></figcaption>
-                <figcaption>Ajouté par : <?= $userManager->getUserById($book->getIdUser())->getPseudo() ?></figcaption>
-            </figure></a>
+            <a href="index.php?action=showBook&id=<?= $book->getId() ?>">
+                <figure class="bookCard">
+                    <img src="<?= $book->getImage() ?>" alt="<?= $book->getTitle() ?>">
+                    <figcaption><?= $book->getTitle() ?></figcaption>
+                    <figcaption>Par <?= $book->getAuthor() ?></figcaption>
+                    <figcaption>Ajouté par : <?= $userManager->getUserById($book->getIdUser())->getPseudo() ?></figcaption>
+                </figure>
+            </a>
         <?php } ?>
     </div>
     <button><a href="index.php?action=showExchangeBooks">Voir tous les livres</a></button>
