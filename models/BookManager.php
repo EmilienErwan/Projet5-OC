@@ -1,6 +1,16 @@
 <?php 
 
 class BookManager extends AbstractEntity{
+    public function getAllBooks(): array {
+        $bookObject = [];
+        $query = "SELECT * FROM books";
+        $stmt = $this->pdo->query($query);
+        $books = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        foreach($books as $book){
+            $bookObject[] = new Book($book);
+        }
+        return $bookObject;
+    }
     /**
      * Récupère tous les livres diponibles
      * @return array

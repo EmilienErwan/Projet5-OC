@@ -16,7 +16,12 @@
     <div class="exchangeBookList">
         <?php foreach($books as $book) {?>
             <article class="exchangeBook">
-                <a class="info" href="index.php?action=showBook&id=<?= $book->getId() ?>"><img src=<?= $book->getImage() ?>></a>
+                <div class="imageContainer">
+                    <a class="info" href="index.php?action=showBook&id=<?= $book->getId() ?>"><img src=<?= $book->getImage() ?>></a>
+                    <?php if($book->getStatus() == false) {?>
+                        <span class="badge">Non disp.</span>
+                    <?php } ?>
+                </div>
                 <h2><?= $book->getTitle() ?></h2>
                 <p><?= $book->getAuthor() ?></p>
                 <em><?= "Vendu par : " . $userManager->getUserById($book->getIdUser())->getPseudo() ?></em>

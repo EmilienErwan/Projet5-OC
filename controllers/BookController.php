@@ -9,7 +9,7 @@ class BookController{
     public function showExchangeBooks():void
     {
         $bookManager = new BookManager();
-        $books = $bookManager->getBooksByStatus();
+        $books = $bookManager->getAllBooks();
         if(!$books){
             throw new Exception("Aucun livre disponible à l'échange.");
         }
