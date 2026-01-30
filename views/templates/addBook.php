@@ -1,11 +1,17 @@
+<script src="/Projet5/tomTroc/js/dropzone.js"></script>
 <div class = "headerEditBook">
     <h1>Ajouter un livre</h1>
 </div>
 <div class ="editBookLayout">
-    <form action="index.php?action=addBook" method="post" class="editBookForm">
+    <form action="index.php?action=addBook" method="post" class="editBookForm" enctype="multipart/form-data">
         <div class ="bookImage">
             <label for="image">Photo</label>
-            <img src="<?= DEFAULT_IMAGE_BOOK ?>" alt="Image par défaut">
+            <div class="dropzone" id="dropzone">
+                <p>Déposez l’image ici ou cliquez</p>
+                <input type="file" name="image" id="imageInput" hidden>
+            </div>
+
+            <img id="previewImage" style="display:none; margin-top:10px;">
         </div>
         <div class ="bookInfo">
             <label for="title">Titre</label>

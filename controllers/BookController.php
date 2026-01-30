@@ -73,12 +73,14 @@ class BookController{
         header("Location: index.php?action=showAccount");
     }
     public function addBook(): void{
+        $imageManager = new ImageManager();
+        $imageManager->saveImage("bookImage", null);
         $book = new Book([
             "title" => $_POST['title'],
             "author" => $_POST['author'],
             "description" => $_POST['description'],
             "status" => $_POST['status'],
-            "image" => DEFAULT_IMAGE_BOOK,
+            "image" => $_POST['image'] ?? DEFAULT_IMAGE_BOOK,
             "idUser" => $_SESSION['id']
         ]);
         $bookManager = new BookManager();
