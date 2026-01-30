@@ -25,7 +25,7 @@ $user = $params['user'];
                 <label for="log">Addresse email</label>
                 <input type="text" name="log" value="<?= $user->getEmail() ?>">
                 <label for="password">Mot de passe</label>
-                <input type="password" name="password" value="<?= $user->getPassword() ?>">
+                <input type="password" name="password" value="">
                 <label for="pseudo">Pseudo</label>
                 <input type="text" name="pseudo" value="<?= $user->getPseudo() ?>">
                 <button class="submit">Enregistrer</button>

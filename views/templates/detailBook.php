@@ -4,7 +4,10 @@
      */
     $userManager = new UserManager();
     $book = $params['book'];
-    $user = $userManager->getUserById($book->getIdUser())
+    $user = $userManager->getUserById($book->getIdUser());
+    if(!isset($_SESSION['id'])){
+        $verif = null;
+    }
 ?>
 
 <div class="articleList">
@@ -23,9 +26,12 @@
                     <img src= "<?= $user->getProfilImage() ?>">
                     <span><?= $user->getPseudo() ?></span>
                 </div>
-                <?php if($_SESSION['id'] !== $user->getId()) { ?>
+                <?php if( $verif === null ) { ?>
+                    <button class="messages" ><a href="index.php?action=showConnectionForm">Envoyer un message</a></button>
+                <?php } else {
+                    if($_SESSION['id'] !== $user->getId()) { ?>
                     <button class="messages" ><a href="index.php?action=showMessages&idUser=<?= $user->getId() ?>">Envoyer un message</a></button>
-                <?php } ?>
+                <?php }} ?>
             </div>
         </article>
 </div>
