@@ -25,23 +25,27 @@ class AdminController{
 
             $imageManager = new ImageManager();
             $imageManager->saveImage('userImage',$userId);
-
-            header('Location: index.php?action=showAccount');
+            header("Location: index.php?action=showAccount");
         }
         $view = new View("Modifier l'image");
         $view->render("editProfilImage");
     }
-    public function updateBookImage() : void {
+    public function updateBookImage(): void {
         if(!isset($_GET['id'])){
             throw new Exception("Livre inexistant");
         }
+
+        $bookId = (int)$_GET['id'];
+
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
             $imageManager = new ImageManager();
-            $imageManager->saveImage('bookImage',$_GET['id']);
-
-            header('Location: index.php?action=showBook&id='. $_GET['id']);
+            $imageManager->saveImage('bookImage', $bookId);
+            header("Location: index.php?action=showEditBook&id=" . $bookId);
         }
+
         $view = new View("Modifier l'image");
-        $view->render("editBookImage");
+        $view->render('editBookImage', ['bookId' => $bookId]);
     }
+
+
 }
