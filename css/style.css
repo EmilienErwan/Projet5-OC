@@ -310,6 +310,12 @@ footer .footerContent img {
     font-size: 14px;
     margin: 0;
 }
+.contactList .newMessage {
+    color: black;
+    font-weight: bold;
+    font-size: 14px;
+    margin: 0;
+}
 .conversation {
     flex: 1;
     display: flex;

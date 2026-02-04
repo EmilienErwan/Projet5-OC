@@ -16,13 +16,18 @@ $userManager = new UserManager();
         }else{ ?>
             <article class="contactList">
                 <?php foreach($contacts as $contact){ ?>
+                <?php if($contact["content"]->getMessageRead() == 0){
+                            $contents = "newMessage";
+                        }else{
+                            $contents = "content";
+                        } ?>
                 <div class ="contactItem">
                     <a href="index.php?action=showMessages&id=<?= $contact["idReceiver"] ?>">
                         <div class="contactInfo">
                             <img src=<?= $contact["profilImage"] ?> alt="<?= $contact["pseudo"] ?>">
                             <p><?= $contact["pseudo"] ?></p>
                         </div>
-                        <p class="content"><?= mb_strlen($contact["content"]->getContent()) > 30 ? mb_substr($contact["content"]->getContent(), 0, 30) . "..." : $contact["content"]->getContent() ?></p>
+                        <p class=<?= $contents ?>><?= mb_strlen($contact["content"]->getContent()) > 30 ? mb_substr($contact["content"]->getContent(), 0, 30) . "..." : $contact["content"]->getContent() ?></p>
                     </a>
                 </div>
                 <?php } ?>
