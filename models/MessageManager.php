@@ -54,7 +54,12 @@ class MessageManager extends AbstractEntity{
     public function getLastMessageReceive(int $userId) : ?Message{
         $query = "SELECT * FROM messages WHERE idReceiver = ? ORDER BY dateSend DESC LIMIT 1";
         $result = $this->pdo->query($query,[$userId]);
-        return new Message($result->fetch(PDO::FETCH_ASSOC));
+        $data = $result->fetch(PDO::FETCH_ASSOC);
+        
+        if($data === false) {
+            return null;
+        }
+        return new Message($data);
     }
     /**
      * Retourne le dernier message reçu d'un utilisateur

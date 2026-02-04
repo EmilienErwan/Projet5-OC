@@ -1,9 +1,13 @@
 <?php
 $contacts = $params['contacts'];
 $messages = $params['messages'];
+$infoMessage = $params['infoMessage'];
 $lastMessageReceiverId = $params['id'];
 $userManager = new UserManager();
 ?>
+<?php if(isset($infoMessage)) { ?>
+    <p class="infoMessage"><?= $infoMessage ?></p>
+<?php }else { ?>
 <div class="messagesLayout">
     <h1>Messagerie</h1>
     <div class="contactMenu">
@@ -50,3 +54,4 @@ $userManager = new UserManager();
         <?php } ?>
     </div>
 </div>
+<?php } ?>

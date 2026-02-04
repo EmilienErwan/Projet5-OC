@@ -7,7 +7,7 @@ class User extends AbstractEntity{
     private string $password;
     private string $library ="[]";
     private DateTime $inscriptionDate;
-    private string $profilImage;
+    private string $profilImage = DEFAULT_IMAGE_PROFIL;
     private string $email;
     public function getId(): int{
         return $this->id_user;

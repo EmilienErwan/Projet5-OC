@@ -20,25 +20,31 @@ class MessageController{
         $messageManager = new MessageManager();
         $receiverIds = $messageManager->getDistinctIdReceiver($userId);
         $contacts = [];
+
         foreach($receiverIds as $receiverId){
             $contacts[] = ["pseudo" => $userManager->getUserById($receiverId)->getPseudo(),
                         "content" => $messageManager->getLastMessage($userId,$receiverId),
                         "idReceiver" => $receiverId,
                         "profilImage" => $userManager->getUserById($receiverId)->getProfilImage()];
         }
-        if(isset($_GET['id'])){
-            $lastMessageReceiverId = $_GET['id'];
-            if($messageManager->getMessagesBetweenTwoUsers($userId, $lastMessageReceiverId) == null){
-                throw new Exception("Vous n'avez pas de messages avec cet utilisateur.");
-            }
-        }elseif(isset($_GET["idUser"]) && $_GET["idUser"] != ""){
-            $lastMessageReceiverId = $_GET["idUser"];
+
+        $infoMessage = null;
+        $messages = [];
+        $lastMessageReceiverId = null;
+        if(empty($receiverIds)){
+            $infoMessage = "Vous n'avez pas encore de messages. Envoyez-en à un utilisateur pour commencer une conversation !";
         }else{
-            $lastMessageReceiverId = $messageManager->getLastMessageReceive($userId)->getIdUser();
+            if(isset($_GET['id'])){
+                $lastMessageReceiverId = $_GET['id'];
+            }elseif(isset($_GET["idUser"]) && $_GET["idUser"] != ""){
+                $lastMessageReceiverId = $_GET["idUser"];
+            }else{
+                $lastMessageReceiverId = $messageManager->getLastMessageReceive($userId)->getIdUser();
+            }
+            $messages = $messageManager->getMessagesByUserId($userId);
         }
-        $messages = $messageManager->getMessagesByUserId($userId);
         $view = new View("Messagerie");
-        $view->render("messages",['contacts' => $contacts,'messages' => $messages,'id' => $lastMessageReceiverId]);
+        $view->render("messages",['contacts' => $contacts,'messages' => $messages,'id' => $lastMessageReceiverId,'infoMessage' => $infoMessage]);
     }
     public function sendMessage():void {
         $userId = $_SESSION['id'];

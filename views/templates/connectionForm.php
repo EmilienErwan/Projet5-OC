@@ -2,11 +2,15 @@
     /**
      * Template pour afficher le formulaire de connexion.
      */
+    if(isset($_GET['error']) && $_GET['error'] == 1){
+        $error = "<p class='errorMessage'>* Email ou mot de passe incorrect</p>";
+    }
 ?>
 
 <div class="connection-form">
     <div class="formWrapper">
         <form action="index.php?action=connectUser" method="post" class="">
+            <?= $error ?? "" ?>
             <h2>Connexion</h2>
             <div class="formGrid">
                 <label for="email">Addresse email</label>

@@ -5,6 +5,7 @@
     $userManager = new UserManager();
     $book = $params['book'];
     $user = $userManager->getUserById($book->getIdUser());
+    $verif = true;
     if(!isset($_SESSION['id'])){
         $verif = null;
     }

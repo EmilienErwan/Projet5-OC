@@ -262,6 +262,12 @@ footer .footerContent img {
 }
 /** End ExchangeBooks css **/
 /** Messages css **/
+.infoMessage {
+    text-align: center;
+    margin: 40px auto;
+    font-size: 18px;
+    color: #555;
+}
 .messagesLayout {
     flex: 1;
     display: flex;
@@ -609,6 +615,9 @@ footer .footerContent img {
     display: flex;
     max-width: 1100px;
     margin: 0 auto;
+}
+.connection-form .errorMessage {
+    color : red;
 }
 .inscription-form .formWrapper, .connection-form .formWrapper{
     flex: 0 0 480px;

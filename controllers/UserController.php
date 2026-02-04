@@ -38,6 +38,12 @@ class UserController{
         $user= new User(["name" => DEFAULT_NAME, "pseudo" => $_POST['pseudo'], "password" => password_hash($_POST['password'], PASSWORD_BCRYPT), "profilImage" => DEFAULT_IMAGE_PROFIL, "email" => $_POST['email']]);
         $userManager->addUser($user);
         $user = $userManager->getUserByEmail($user->getEmail());
+        $_SESSION['email'] = $user->getEmail();
+        $_SESSION['id'] = $user->getId();
+        $_SESSION['name'] = $user->getName();
+        $_SESSION['pseudo'] = $user->getPseudo();
+        $_SESSION['library'] = $user->getLibrary();
+        $_SESSION['profilImage'] = $user->getProfilImage();
 
         $view = new View("Mon compte");
         $view->render("account",["user" => $user]);
@@ -46,7 +52,11 @@ class UserController{
     {
         $userManager = new UserManager();
         $user= $userManager->getUserByEmail($_POST['log']);
-
+        
+        if(!$user || !password_verify($_POST['password'], $user->getPassword())){
+            header("Location: index.php?action=showConnectionForm&error=1");
+            exit;
+        }
         $_SESSION['email'] = $user->getEmail();
         $_SESSION['id'] = $user->getId();
         $_SESSION['name'] = $user->getName();

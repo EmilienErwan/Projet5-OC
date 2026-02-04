@@ -112,8 +112,8 @@ class UserManager extends AbstractEntity{
      * @return void
      */
     public function addUser(User $user): void {
-        $query = "INSERT INTO users (name,pseudo,password,library,inscriptionDate,profilImage,email) VALUES (:name, :pseudo, :password, :library, NOW(), ".DEFAULT_IMAGE_PROFIL.", :email)";
-        $this->pdo->query($query, ["name" => $user->getName(), "pseudo" => $user->getPseudo(), "password" => $user->getPassword(), "library" => $user->getLibrary(), "email" => $user->getEmail()]);
+        $query = "INSERT INTO users (name,pseudo,password,library,inscriptionDate,profilImage,email) VALUES (:name, :pseudo, :password, :library, NOW(), :profilImage, :email)";
+        $this->pdo->query($query, ["name" => $user->getName(), "pseudo" => $user->getPseudo(), "password" => $user->getPassword(), "library" => $user->getLibrary(), "profilImage" => $user->getProfilImage(), "email" => $user->getEmail()]);
     }
     /**
      * Compare la date d'inscription avec la date actuelle et retourne la différence
