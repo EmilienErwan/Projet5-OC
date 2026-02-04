@@ -1,7 +1,10 @@
 <?php
+$messageManager = new MessageManager();
 if(isset($_SESSION['email'])) {
     $connected = "disconnectUser";
+    $countMessage = "(".$messageManager->countNewMessages($_SESSION['id']).")";
 } else {
+    $countMessage = "";
     $connected = "showConnectionForm";
 }
 ?>
@@ -24,7 +27,7 @@ if(isset($_SESSION['email'])) {
                     <a href="index.php?action=showExchangeBooks" class="<?= ($_GET['action'] ?? '') === 'showExchangeBooks' ? 'active' : '' ?>">Nos livres à l'échange</a>
                 </div>
                 <div class="rightMenu">
-                    <a href="index.php?action=showMessages" class="<?= ($_GET['action'] ?? '') === 'showMessages' ? 'active' : '' ?>">Messagerie</a>
+                    <a href="index.php?action=showMessages" class="<?= ($_GET['action'] ?? '') === 'showMessages' ? 'active' : '' ?>">Messagerie<?= $countMessage ?></a>
                     <a href="index.php?action=showAccount" class="<?= ($_GET['action'] ?? '') === 'showAccount' ? 'active' : '' ?>">Mon compte</a>
                     <?php if($connected === "disconnectUser"){ ?>
                         <a href="index.php?action=disconnectUser">Déconnexion</a>

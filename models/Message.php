@@ -5,6 +5,7 @@ class Message extends AbstractEntity{
     private int $idUser;
     private int $idReceiver;
     private string $content;
+    private bool $messageRead = false;
     private DateTime $dateSend;
     public function getId(): int{
         return $this->idMessage;
@@ -35,5 +36,11 @@ class Message extends AbstractEntity{
     }
     public function setDate(string $date): void{
         $this->dateSend = new DateTime($date);
+    }
+    public function getMessageRead(): bool{
+        return $this->messageRead;
+    }
+    public function setMessageRead(bool $messageRead): void{
+        $this->messageRead = $messageRead;
     }
 }

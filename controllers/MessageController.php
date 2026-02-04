@@ -23,7 +23,7 @@ class MessageController{
 
         foreach($receiverIds as $receiverId){
             $contacts[] = ["pseudo" => $userManager->getUserById($receiverId)->getPseudo(),
-                        "content" => $messageManager->getLastMessage($userId,$receiverId),
+                        "content" => $messageManager->getLastMessage($receiverId,$userId),
                         "idReceiver" => $receiverId,
                         "profilImage" => $userManager->getUserById($receiverId)->getProfilImage()];
         }
@@ -42,6 +42,7 @@ class MessageController{
                 $lastMessageReceiverId = $messageManager->getLastMessageReceive($userId)->getIdUser();
             }
             $messages = $messageManager->getMessagesByUserId($userId);
+            $messageManager->markMessagesAsRead($lastMessageReceiverId,$userId);
         }
         $view = new View("Messagerie");
         $view->render("messages",['contacts' => $contacts,'messages' => $messages,'id' => $lastMessageReceiverId,'infoMessage' => $infoMessage]);

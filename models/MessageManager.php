@@ -31,7 +31,7 @@ class MessageManager extends AbstractEntity{
      * @return array
      */
     public function getDistinctIdReceiver(int $userId): array{
-        $query = "SELECT DISTINCT idReceiver FROM messages WHERE idUser = ?";
+        $query = "SELECT DISTINCT idUser FROM messages WHERE idReceiver = ?";
         $stmt = $this->pdo->query( $query, [$userId] );
         return $stmt->fetchAll(PDO::FETCH_COLUMN);
     }
@@ -97,7 +97,17 @@ class MessageManager extends AbstractEntity{
      * @return void
      */
     public function addMessage(Message $message): void{
-        $query = "INSERT INTO messages (idUser,idReceiver,content,dateSend) VALUES (:idUser,:idReceiver,:content,NOW())";
+        $query = "INSERT INTO messages (idUser,idReceiver,content,dateSend,messageRead) VALUES (:idUser,:idReceiver,:content,NOW(),0)";
         $this->pdo->query( $query, ["idUser" => $message->getIdUser(),"idReceiver" => $message->getIdReceiver(),"content" => $message->getContent()] );
+    }
+    public function countNewMessages(int $userId): int{
+        $query = "SELECT COUNT(*) as nbNewMessages FROM messages WHERE idReceiver = ? AND messageRead = 0";
+        $stmt = $this->pdo->query( $query, [$userId] );
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return (int)$result['nbNewMessages'];
+    }
+    public function markMessagesAsRead(int $userId, int $receiverId): void{
+        $query = "UPDATE messages SET messageRead = 1 WHERE idReceiver = ? AND idUser = ?";
+        $this->pdo->query( $query, [$receiverId, $userId] );
     }
 }
