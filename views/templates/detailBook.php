@@ -31,7 +31,7 @@
                     <button class="messages" ><a href="index.php?action=showConnectionForm">Envoyer un message</a></button>
                 <?php } else {
                     if($_SESSION['id'] !== $user->getId()) { ?>
-                    <button class="messages" ><a href="index.php?action=showMessages&idUser=<?= $user->getId() ?>">Envoyer un message</a></button>
+                    <a href="index.php?action=showMessages&idUser=<?= $user->getId() ?>"><button class="messages" >Envoyer un message</button></a>
                 <?php }} ?>
             </div>
         </article>
