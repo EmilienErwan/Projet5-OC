@@ -17,8 +17,11 @@ class UserController{
         $this->checkIfUserIsConnected();
 
         $userManager = new UserManager();
-        $user = $userManager->getUserByEmail($_SESSION['email']);
-
+        if(isset($_GET['id']) && $_GET['id'] !== $_SESSION['id']){
+            $user = $userManager->getUserById($_GET['id']);
+        }else{
+            $user = $userManager->getUserByEmail($_SESSION['email']);
+        }
         $view = new View("Mon compte");
         $view->render("account",["user" => $user]);
     }

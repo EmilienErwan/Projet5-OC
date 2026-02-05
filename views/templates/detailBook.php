@@ -24,8 +24,10 @@
                 <p class="description"><?= $book->getDescription() ?></p>
                 <h4>Propriétaire</h4>
                 <div class="owner">
-                    <img src= "<?= $user->getProfilImage() ?>">
-                    <span><?= $user->getPseudo() ?></span>
+                    <a href="index.php?action=showAccount&id=<?= $user->getId() ?>">
+                        <img src= "<?= $user->getProfilImage() ?>">
+                        <span><?= $user->getPseudo() ?></span>
+                    </a>
                 </div>
                 <?php if( $verif === null ) { ?>
                     <button class="messages" ><a href="index.php?action=showConnectionForm">Envoyer un message</a></button>
