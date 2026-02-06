@@ -13,7 +13,7 @@
             <?= $error ?? "" ?>
             <h2>Connexion</h2>
             <div class="formGrid">
-                <label for="email">Addresse email</label>
+                <label for="log">Addresse email</label>
                 <input type="text" name="log" id="log" required>
                 <label for="password">Mot de passe</label>
                 <input type="password" name="password" id="password" required>
@@ -22,5 +22,5 @@
             <p>Pas encore de compte ? <a href="index.php?action=showInscriptionForm">Inscrivez-vous</a></p>
         </form>
     </div>
-    <img src=".\uploads\images\logos\connection_image.png">
+    <img src="./uploads/images/logos/connection_image.png" alt="Image de connexion">
 </div>

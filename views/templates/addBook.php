@@ -5,13 +5,13 @@
 <div class ="editBookLayout">
     <form action="index.php?action=addBook" method="post" class="editBookForm" enctype="multipart/form-data">
         <div class ="bookImage">
-            <label for="image">Photo</label>
+            <p>Photo</p>
             <div class="dropzone" id="dropzone">
                 <p>Déposez l’image ici ou cliquez</p>
                 <input type="file" name="image" id="imageInput" hidden>
             </div>
 
-            <img id="previewImage" style="display:none; margin-top:10px;">
+            <img id="previewImage" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" style="display:none; margin-top:10px;" alt="Image de prévisualisation">
         </div>
         <div class ="bookInfo">
             <label for="title">Titre</label>
@@ -24,7 +24,7 @@
             <textarea name="description" id="description" class="description" required></textarea>
             
             <label for="status">Statut :</label>
-            <select name="status" id="status" required>
+            <select name="status" id="status">
                 <option value="true">Disponible</option>
                 <option value="false">Indisponible</option>
             </select>

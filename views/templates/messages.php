@@ -25,7 +25,7 @@ $userManager = new UserManager();
                     <a href="index.php?action=showMessages&id=<?= $contact["idReceiver"] ?>">
                         <div class="contactInfo">
                             <img src=<?= $contact["profilImage"] ?> alt="<?= $contact["pseudo"] ?>">
-                            <p><?= $contact["pseudo"] ?></p>
+                            <h2><?= $contact["pseudo"] ?></h2>
                         </div>
                         <p class=<?= $contents ?>><?= mb_strlen($contact["content"]->getContent()) > 30 ? mb_substr($contact["content"]->getContent(), 0, 30) . "..." : $contact["content"]->getContent() ?></p>
                     </a>

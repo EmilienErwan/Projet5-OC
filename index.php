@@ -100,10 +100,15 @@ try {
                 $controller = new AdminController();
                 $controller->updateProfilImage();
                 break;
+
+            case 'home':
+                $controller = new AdminController();
+                $controller->showHome();
+                break;
                 
             default:
                 $controller = new AdminController();
-                $controller->showHome();
+                $controller->show404();
                 break;
         }
 } catch (Exception $e) {

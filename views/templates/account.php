@@ -48,7 +48,6 @@ if($user->getId() !== $_SESSION['id']){
                     <?php } ?>
                         </div>
         <?php } ?>
-            </div>
     </div>
 </div>
 <?php }else{ ?>
@@ -71,11 +70,11 @@ if($user->getId() !== $_SESSION['id']){
             <form action="index.php?action=updateUser" method="post">
                 <p>Vos informations personnelles</p>
                 <label for="log">Addresse email</label>
-                <input type="text" name="log" value="<?= $user->getEmail() ?>">
+                <input id="log" type="text" name="log" value="<?= $user->getEmail() ?>">
                 <label for="password">Mot de passe</label>
-                <input type="password" name="password" value="">
+                <input id="password" type="password" name="password" value="">
                 <label for="pseudo">Pseudo</label>
-                <input type="text" name="pseudo" value="<?= $user->getPseudo() ?>">
+                <input id="pseudo" type="text" name="pseudo" value="<?= $user->getPseudo() ?>">
                 <button class="submit">Enregistrer</button>
             </form>
         </div>
@@ -100,7 +99,7 @@ if($user->getId() !== $_SESSION['id']){
                     <?php }else{ ?>
                         <div class="bookInLibrary libraryGrid">
                     <?php } ?>
-                            <div class="imageBook"><img src="<?= $book->getImage() ?>" alt=<?= $book->getTitle() ?>></div>
+                            <div class="imageBook"><img src="<?= $book->getImage() ?>" alt="<?= $book->getTitle() ?>"></div>
                             <div class="title"><?= $book->getTitle() ?></div>
                             <div class="author"><?= $book->getAuthor() ?></div>
                             <div class="accountDescription"><?= $book->getDescription() ?></div>
@@ -113,6 +112,5 @@ if($user->getId() !== $_SESSION['id']){
         <?php } ?>
             </div>
     <a href = "index.php?action=showAddBook">+ Ajouter un livre</a>
-    </div>
 </div>
 <?php } ?>

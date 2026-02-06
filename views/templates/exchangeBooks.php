@@ -17,7 +17,7 @@
         <?php foreach($books as $book) {?>
             <article class="exchangeBook">
                 <div class="imageContainer">
-                    <a class="info" href="index.php?action=showBook&id=<?= $book->getId() ?>"><img src=<?= $book->getImage() ?>></a>
+                    <a class="info" href="index.php?action=showBook&id=<?= $book->getId() ?>"><img src=<?= $book->getImage() ?> alt="<?= $book->getTitle() ?>"></a>
                     <?php if($book->getStatus() == false) {?>
                         <span class="badge">Non disp.</span>
                     <?php } ?>

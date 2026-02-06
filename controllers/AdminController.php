@@ -17,6 +17,12 @@ class AdminController{
         $view = new View("Accueil");
         $view->render("home");
     }
+    public function show404():void
+    {
+        $view = new View("Erreur 404");
+        $view->render("error404");
+        http_response_code(404);
+    }
     public function updateProfilImage() : void {
         $this->checkIfUserIsConnected();
 

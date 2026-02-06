@@ -20,5 +20,5 @@
             <p>Déjà inscrit ? <a href="index.php?action=showConnectionForm">Connectez-vous</a></p>
         </form>
     </div>
-    <img src=".\uploads\images\logos\connection_image.png">
+    <img src="./uploads/images/logos/connection_image.png" alt="Image d'inscription">
 </div>

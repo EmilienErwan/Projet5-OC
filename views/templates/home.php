@@ -10,7 +10,7 @@
     <div class="hero-text">
         <h1>Rejoignez nos lecteurs passionnés</h1>
         <p>Donnez une nouvelle vie à vos livres en les échangeant avec d'autres amoureux de la lecture. Nous croyons en la magie du partage de connaissances et d'histoires à travers les livres</p>
-        <button><a href="index.php?action=showExchangeBooks">Découvrir</a></button>
+        <a href="index.php?action=showExchangeBooks" class="btn">Découvrir</a>
     </div>
     <figure class="hero-image">
         <img src="<?= $randomBook->getImage() ?>" alt="<?= $randomBook->getTitle() ?>">
@@ -26,14 +26,16 @@
             <a href="index.php?action=showBook&id=<?= $book->getId() ?>">
                 <figure class="bookCard">
                     <img src="<?= $book->getImage() ?>" alt="<?= $book->getTitle() ?>">
-                    <figcaption><?= $book->getTitle() ?></figcaption>
-                    <figcaption>Par <?= $book->getAuthor() ?></figcaption>
-                    <figcaption>Ajouté par : <?= $userManager->getUserById($book->getIdUser())->getPseudo() ?></figcaption>
+                    <figcaption>
+                        <p><?= $book->getTitle() ?></p>
+                        <p>Par <?= $book->getAuthor() ?></p>
+                        <p>Ajouté par : <?= $userManager->getUserById($book->getIdUser())->getPseudo() ?></p>
+                    </figcaption>
                 </figure>
             </a>
         <?php } ?>
     </div>
-    <button><a href="index.php?action=showExchangeBooks">Voir tous les livres</a></button>
+    <a href="index.php?action=showExchangeBooks" class="btn">Voir tous les livres</a>
 </div>
 <div class="section section-steps">
 <h1>Comment ça marche ?</h1>
@@ -51,7 +53,7 @@
             <p>Proposez un échange avec d'autres passionnés de lecture.</p>
         </div>
     </div>
-<button><a href="index.php?action=showExchangeBooks">Voir tous les livres</a></button>
+<a href="index.php?action=showExchangeBooks" class="btn">Voir tous les livres</a>
 </div>
 <div class="section section-values">
     <h1>Nos valeurs</h1>

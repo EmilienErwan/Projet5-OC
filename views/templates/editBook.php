@@ -7,7 +7,7 @@ $book = $params['book'];
 <div class ="editBookLayout">
     <form action="index.php?action=updateBook&id=<?= $book->getId() ?>" method="post" class="editBookForm">
         <div class ="bookImage">
-            <label for="image">Photo</label>
+            <p>Photo</p>
             <img src="<?= htmlspecialchars($book->getImage()) ?>" alt="<?= htmlspecialchars($book->getTitle()) ?>">
             <a href="index.php?action=editBookImage&id=<?= $book->getId() ?>">Modifier la photo</a>
         </div>
@@ -22,7 +22,7 @@ $book = $params['book'];
             <textarea name="description" id="description" class="description" required><?= htmlspecialchars($book->getDescription()) ?></textarea>
             
             <label for="status">Statut :</label>
-            <select name="status" id="status" required>
+            <select name="status" id="status">
                 <option value="true" <?= $book->getStatus() ? 'selected' : '' ?>>Disponible</option>
                 <option value="false" <?= !$book->getStatus() ? 'selected' : '' ?>>Indisponible</option>
             </select>
